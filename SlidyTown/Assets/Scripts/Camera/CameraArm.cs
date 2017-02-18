@@ -44,6 +44,6 @@ public class CameraArm : MonoBehaviour {
     }
 
     private Vector3 GetTargetPosition() {
-        return GetFocusPosition() + Vector3.up * (Height + PlayerController.LocalPlayer.MovementController.Speed * VelocityOffset) - Vector3.forward * Distance;
+        return Vector3.Scale(GetFocusPosition(), new Vector3(0.5f, 1, 1)) + Vector3.up * (Height + PlayerController.LocalPlayer.MovementController.Speed * VelocityOffset) - Vector3.forward * Distance;
     }
 }
