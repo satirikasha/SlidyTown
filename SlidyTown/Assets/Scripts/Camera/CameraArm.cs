@@ -15,11 +15,11 @@ public class CameraArm : MonoBehaviour {
         this.transform.position = GetTargetPosition();
     }
 
-    void FixedUpdate() {
+    void Update() {
         this.transform.position = Vector3.Lerp(
             this.transform.position,
             GetTargetPosition(),
-            Time.fixedDeltaTime * DistanceDamping
+            Time.deltaTime * DistanceDamping
             );
     }
 

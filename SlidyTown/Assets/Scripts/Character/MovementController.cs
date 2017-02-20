@@ -21,16 +21,12 @@ public class MovementController : MonoBehaviour {
 
     private bool _MovingRight = true;
 
-    private Rigidbody _Rigidbody;
-
     void Awake() {
         Speed = MinSpeed;
         Direction = Vector3.forward;
-
-        _Rigidbody = this.GetComponent<Rigidbody>();
     }
 
-    void FixedUpdate() {
+    void Update() {
         UpdateSpeed();
         UpdateDirection();
         UpdateRotation();
@@ -42,18 +38,18 @@ public class MovementController : MonoBehaviour {
     }
 
     private void UpdateSpeed() {
-        Speed = Mathf.Clamp(Speed + Acceleration * Time.fixedDeltaTime, MinSpeed, MaxSpeed);
+        Speed = Mathf.Clamp(Speed + Acceleration * Time.deltaTime, MinSpeed, MaxSpeed);
     }
 
     private void UpdateDirection() {
-        Direction = Vector3.RotateTowards(Direction, TargetDirection, Steering * Speed * Time.fixedDeltaTime, 1).normalized;
+        Direction = Vector3.RotateTowards(Direction, TargetDirection, Steering * Speed * Time.deltaTime, 1).normalized;
     }
 
     private void UpdateRotation() {
-        _Rigidbody.rotation = Quaternion.LookRotation(Direction);
+        this.transform.rotation = Quaternion.LookRotation(Direction);
     }
 
     private void UpdatePosition() {
-        _Rigidbody.position = _Rigidbody.position + Direction * Time.fixedDeltaTime * Speed;
+        this.transform.position = this.transform.position + Direction * Time.deltaTime * Speed;
     }
 }
