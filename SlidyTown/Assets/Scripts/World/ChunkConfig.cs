@@ -18,13 +18,24 @@ public class ChunkConfig : SingletonScriptableObject<ChunkConfig> {
     public ChunkData GetChunkData(int id) {
         return _Chunks.FirstOrDefault(_ => _.ID == id);
     }
+
+#if UNITY_EDITOR
+    void OnValidate() {
+        _Chunks.ForEach(c => {
+            c.ID = UnityEditor.AssetDatabase.GetAssetPath(c.Prefab).GetHashCode();
+
+            if (c.Prefab != null)
+                c.Prefab.Data = c;
+        });
+    }
+#endif
 }
 
 [Serializable]
 public class ChunkData {
     [ReadOnly]
     public int ID;
-    [Range(0,1)]
+    [Range(0, 1)]
     public float Complexity;
     public WorldChunk Prefab;
 }

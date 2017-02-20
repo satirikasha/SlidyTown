@@ -4,6 +4,6 @@ using UnityEngine;
 
 public class WorldChunk : MonoBehaviour {
 
-    [HideInInspector]
+    //[HideInInspector]
     public ChunkData Data;
 }
