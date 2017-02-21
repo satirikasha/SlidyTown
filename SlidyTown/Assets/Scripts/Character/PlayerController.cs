@@ -22,7 +22,11 @@ public class PlayerController : SingletonBehaviour<PlayerController> {
     }
 
     private void UpdateInput() {
-        if (Input.GetKeyDown(KeyCode.Space))
-            MovementController.SwitchDirection();
+        if (GameManager.Instance.IsPlaying && Input.GetKeyUp(KeyCode.Space))
+            SwitchDirection();
+    }
+
+    public void SwitchDirection() {
+        MovementController.SwitchDirection();
     }
 }
