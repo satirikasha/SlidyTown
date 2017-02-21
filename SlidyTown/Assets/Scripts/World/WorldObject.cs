@@ -36,6 +36,7 @@ public class WorldObject : MonoBehaviour {
         }
 
         var source = WorldObjectProvider.GetWorldObject<GameObject>(this.CleanName);
+        Debug.Log(source);
         if (source != null) {
             var obj = Instantiate(source, this.transform, false);
             obj.name = this.CleanName + "_" + WorldObjectProvider.CurrentWorld;
