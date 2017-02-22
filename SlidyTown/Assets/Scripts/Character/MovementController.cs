@@ -20,6 +20,7 @@ public class MovementController : MonoBehaviour {
     }
 
     private bool _MovingRight = true;
+    private bool _AllowMovement = true;
 
     void Awake() {
         Speed = MinSpeed;
@@ -27,10 +28,16 @@ public class MovementController : MonoBehaviour {
     }
 
     void Update() {
-        UpdateSpeed();
-        UpdateDirection();
-        UpdateRotation();
-        UpdatePosition();
+        if (_AllowMovement) {
+            UpdateSpeed();
+            UpdateDirection();
+            UpdateRotation();
+            UpdatePosition();
+        }
+    }
+
+    public void StopMovement() {
+        _AllowMovement = false;
     }
 
     public void SwitchDirection() {

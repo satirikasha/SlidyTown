@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Linq;
 
-public class CameraArm : MonoBehaviour {
+public class CameraArm : SingletonBehaviour<CameraArm> {
     public float FocusRadius = 5;
     [Space]
     public float Height = 10;
@@ -12,15 +12,21 @@ public class CameraArm : MonoBehaviour {
     public float AngleDamping = 3;
 
     void Start() {
-        this.transform.position = GetTargetPosition();
+        SnapToTarget();
     }
 
     void Update() {
-        this.transform.position = Vector3.Lerp(
-            this.transform.position,
-            GetTargetPosition(),
-            Time.deltaTime * DistanceDamping
-            );
+        if (PlayerController.LocalPlayer != null) {
+            this.transform.position = Vector3.Lerp(
+                this.transform.position,
+                GetTargetPosition(),
+                Time.deltaTime * DistanceDamping
+                );
+        }
+    }
+
+    public void SnapToTarget() {
+        this.transform.position = GetTargetPosition();
     }
 
     private Vector3 GetFocusPosition() {

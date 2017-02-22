@@ -25,18 +25,25 @@ public class WorldObject : MonoBehaviour {
         if (this.transform.childCount > 0) {
 #if UNITY_EDITOR
             if (Application.isPlaying) {
-                Destroy(this.transform.GetChild(0).gameObject);
+                for (int i = this.transform.childCount - 1; i >= 0; i--) {
+                    Destroy(this.transform.GetChild(i).gameObject);
+                }
             }
             else {
-                UnityEditor.EditorApplication.delayCall += () => DestroyImmediate(this.transform.GetChild(0).gameObject);                
+                UnityEditor.EditorApplication.delayCall += () => {
+                    for (int i = this.transform.childCount - 1; i >= 0; i--) {
+                        DestroyImmediate(this.transform.GetChild(i).gameObject);
+                    }
+                };
             }
 #else
-            Destroy(this.transform.GetChild(0).gameObject);
+            for (int i = this.transform.childCount - 1; i >= 0; i--) {
+                Destroy(this.transform.GetChild(i).gameObject);
+            }
 #endif
         }
 
         var source = WorldObjectProvider.GetWorldObject<GameObject>(this.CleanName);
-        Debug.Log(source);
         if (source != null) {
             var obj = Instantiate(source, this.transform, false);
             obj.name = this.CleanName + "_" + WorldObjectProvider.CurrentWorld;
