@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 89eba8bb484898444838aaa33b562a8c
-timeCreated: 1487702633
+guid: 63e6910b2ee6a354f9511c74d38f10db
+timeCreated: 1487782609
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
@@ -9,7 +9,7 @@ ModelImporter:
     400000: //RootNode
     2300000: //RootNode
     3300000: //RootNode
-    4300000: b_8_01
+    4300000: b_9_01
   materials:
     importMaterials: 1
     materialName: 0
@@ -34,7 +34,7 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: 10
+    globalScale: 1
     meshCompression: 0
     addColliders: 0
     importBlendShapes: 1
