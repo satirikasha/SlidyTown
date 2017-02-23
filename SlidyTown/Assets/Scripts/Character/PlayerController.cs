@@ -32,13 +32,13 @@ public class PlayerController : SingletonBehaviour<PlayerController> {
             if (OnPickedUp != null)
                 OnPickedUp(pickup);
         }
-        //else {
-        //    MovementController.StopMovement();
-        //    Instantiate(WorldObjectProvider.GetWorldObject("DestroyEffect"), this.transform.position, Quaternion.identity);
-        //    this.transform.GetChild(0).gameObject.SetActive(false);
-        //    if (OnPlayerDied != null)
-        //        OnPlayerDied();
-        //}
+        else {
+            MovementController.StopMovement();
+            Instantiate(WorldObjectProvider.GetWorldObject("DestroyEffect"), this.transform.position, Quaternion.identity);
+            this.transform.GetChild(0).gameObject.SetActive(false);
+            if (OnPlayerDied != null)
+                OnPlayerDied();
+        }
     }
 
     private void UpdateInput() {

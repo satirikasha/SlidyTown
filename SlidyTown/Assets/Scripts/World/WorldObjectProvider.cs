@@ -7,33 +7,41 @@ using Object = UnityEngine.Object;
 
 [ExecuteInEditMode]
 [DefaultExecutionOrder(0)]
-public class WorldObjectProvider : SingletonBehaviour<WorldObjectProvider> {
+public static class WorldObjectProvider {
 
     public const string ResourcesWorldsPath = "World";
     public const string AssetsWorldsPath = "Assets/Resources/" + ResourcesWorldsPath;
+    public const string CurrentWorldKey = "CurrentWorld";
+    public const string DefaultWorld = "Sheep";
 
     public static event Action OnWorldChanged;
 
     public static string CurrentWorld {
         get {
-            return Instance._CurrentWorld;
+            if (String.IsNullOrEmpty(_CurrentWorld)){
+                if (PlayerPrefs.HasKey(CurrentWorldKey)) {
+                    _CurrentWorld = PlayerPrefs.GetString(CurrentWorldKey);
+                }
+                else {
+                    _CurrentWorld = DefaultWorld;
+                    PlayerPrefs.SetString(CurrentWorldKey, _CurrentWorld);
+                }
+            }
+            return _CurrentWorld;
         }
         set {
-            Instance._CurrentWorld = value;
-            if (OnWorldChanged != null)
-                OnWorldChanged();
+            if (_CurrentWorld != value) {
+                _CurrentWorld = value;
+                PlayerPrefs.SetString(CurrentWorldKey, _CurrentWorld);
+                if (OnWorldChanged != null)
+                    OnWorldChanged();
+            }
         }
     }
     [WorldSelector]
-    [SerializeField]
-    private string _CurrentWorld;
+    private static string _CurrentWorld;
 
     private static Dictionary<string, Object[]> _WorldCache = new Dictionary<string, Object[]>();
-
-    void OnValidate() {
-        if (OnWorldChanged != null)
-            OnWorldChanged();
-    }
 
     public static Object GetWorldObject(string world, string name) {
         PrepareWorld(world);
