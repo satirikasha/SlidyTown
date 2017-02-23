@@ -12,7 +12,7 @@ public static class WorldObjectProvider {
     public const string ResourcesWorldsPath = "World";
     public const string AssetsWorldsPath = "Assets/Resources/" + ResourcesWorldsPath;
     public const string CurrentWorldKey = "CurrentWorld";
-    public const string DefaultWorld = "Sheep";
+    public const string DefaultWorld = "Farm";
 
     public static event Action OnWorldChanged;
 
