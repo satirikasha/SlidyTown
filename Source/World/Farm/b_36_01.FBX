@@ -11,10 +11,10 @@ FBXHeaderExtension:  {
 		Year: 2017
 		Month: 2
 		Day: 23
-		Hour: 14
-		Minute: 9
-		Second: 21
-		Millisecond: 130
+		Hour: 15
+		Minute: 52
+		Second: 52
+		Millisecond: 538
 	}
 	Creator: "FBX SDK/FBX Plugins version 2017.0.1"
 	SceneInfo: "SceneInfo::GlobalInfo", "UserData" {
@@ -36,13 +36,13 @@ FBXHeaderExtension:  {
 			P: "Original|ApplicationVendor", "KString", "", "", "Autodesk"
 			P: "Original|ApplicationName", "KString", "", "", "3ds Max"
 			P: "Original|ApplicationVersion", "KString", "", "", "2017"
-			P: "Original|DateTime_GMT", "DateTime", "", "", "23/02/2017 11:09:21.129"
+			P: "Original|DateTime_GMT", "DateTime", "", "", "23/02/2017 12:52:52.537"
 			P: "Original|FileName", "KString", "", "", "H:\_Git\SlidyTown\Source\World\Farm\b_36_01.FBX"
 			P: "LastSaved", "Compound", "", ""
 			P: "LastSaved|ApplicationVendor", "KString", "", "", "Autodesk"
 			P: "LastSaved|ApplicationName", "KString", "", "", "3ds Max"
 			P: "LastSaved|ApplicationVersion", "KString", "", "", "2017"
-			P: "LastSaved|DateTime_GMT", "DateTime", "", "", "23/02/2017 11:09:21.129"
+			P: "LastSaved|DateTime_GMT", "DateTime", "", "", "23/02/2017 12:52:52.537"
 			P: "Original|ApplicationActiveProject", "KString", "", "", "C:\Users\3d\Documents\3dsMax"
 			P: "Original|ApplicationNativeFile", "KString", "", "", "H:\#WORK\MY\SlidyTown\3d_char\Cow\Cow.max"
 		}
@@ -79,7 +79,7 @@ GlobalSettings:  {
 
 Documents:  {
 	Count: 1
-	Document: 2321115744, "", "Scene" {
+	Document: 2508199392, "", "Scene" {
 		Properties70:  {
 			P: "SourceObject", "object", "", ""
 			P: "ActiveAnimStackName", "KString", "", "", ""
@@ -302,9 +302,9 @@ Definitions:  {
 ;------------------------------------------------------------------
 
 Objects:  {
-	Geometry: 1837801984, "Geometry::", "Mesh" {
+	Geometry: 1837804704, "Geometry::", "Mesh" {
 		Properties70:  {
-			P: "Color", "ColorRGB", "Color", "",0.694117647058824,0.109803921568627,0.584313725490196
+			P: "Color", "ColorRGB", "Color", "",0,0,0
 		}
 		Vertices: *4230 {
 			a: -190,-190,-40,-190,-170,-40,-190,-160,-40,-190,-150,-40,-190,130,-40,-190,140,-40,-190,-190,-30,-190,-170,-30,-190,-160,-30,-190,-150,-30,-190,130,-30,-190,140,-30,-190,-180,-10,-190,-170,-10,-190,-180,0,-190,-170,0,-180,-180,-20,-180,-170,-20,-180,-180,-10,-180,-170,-10,-180,-180,10,-180,-170,10,-180,-180,30,-180,-170,30,-170,-180,-40,-170,-170,-40,-170,-140,-40,-170,-130,-40,-170,-100,-40,-170,-90,-40,-170,-180,-30,-170,-170,-30,-170,-140,-30,-170,-130,-30,-170,-100,-30,-170,-90,-30,-170,-180,-20,-170,-170,-20,-170,-180,0,-170,-170,0,-170,-180,10,-170,-170,10,-170,-180,30,-170,-170,30,-170,-180,40,-170,-170,40,-150,-170,-40,-150,-160,-40,-150,-130,-40,-150,-120,-40,-150,-170,-30,-150,-160,-30,-150,-130,-30,-150,-120,-30,-140,-120,-40,-140,-110,-40,-140,150,-40,-140,160,-40,-140,-120,-30,-140,-120,-20,-140,-110,-20,-140,150,-20,-140,160,-20,-130,-160,-40,-130,-150,-40,-130,140,-40,-130,150,-40,-130,-160,-30,-130,-150,-30,-130,140,-30,-130,150,-30,-110,150,-40,-110,160,-40,-110,150,-30,-110,160,-30,-100,-160,-40,-100,-150,-40,-100,-40,-40,-100,-30,-40,-100,-160,-30,-100,-150,-30,-100,-40,-30,-100,-30,-30,-90,-60,-40,-90,-50,-40,-90,-60,-30,-90,-50,-30,-70,-140,-40,-70,-130,-40,-70,-50,-40,-70,-40,-40,-70,-140,-30,-70,-130,-30,-70,-50,-30,-70,-40,-30,-70,-180,-20,-70,-170,-20,-70,-180,-10,-70,-170,-10,-60,-10,-40,-60,0,-40,-60,-180,-30,-60,-170,-30,-60,-10,-30,-60,0,-30,-60,-180,-20,-60,-170,-20,-60,-180,0,-60,-170,0,-60,-180,20,-60,-170,20,-50,-170,-40,-50,-160,-40,-50,-170,-30,-50,-160,-30,-30,-140,-40,-30,-130,-40,-30,-140,-30,-30,-130,-30,-20,-20,-40,-20,-10,-40,-20,-20,-30,-20,-10,-30,-10,-180,-40,-10,-170,-40,-10,-180,-30,-10,-170,-30,-10,-180,20,-10,-170,20,-10,-180,30,-10,-170,30,0,-180,10,0,-170,10,0,-180,20,0,-170,20,10,-180,-40,10,-170,-40,10,50,-40,10,70,-40,10,-180,-30,10,-170,-30,10,60,-30,10,70,-30,10,50,-20,10,60,-20,20,-140,-40,20,-130,-40,20,-140,-30,20,-130,-30,30,-170,-40,30,-160,-40,30,-150,-40,30,-140,-40,30,60,-40,30,70,-40,30,-150,-30,30,-140,-30,30,60,-30,30,70,-30,30,-170,-20,
@@ -442,7 +442,7 @@ Objects:  {
 			}
 		}
 	}
-	Model: 1845048896, "Model::b_36_01", "Mesh" {
+	Model: 2593460672, "Model::b_36_01", "Mesh" {
 		Version: 232
 		Properties70:  {
 			P: "PreRotation", "Vector3D", "Vector", "",-90,-0,0
@@ -452,7 +452,7 @@ Objects:  {
 			P: "GeometricTranslation", "Vector3D", "Vector", "",0,40.3305625915527,0
 			P: "GeometricRotation", "Vector3D", "Vector", "",-90,-0,0
 			P: "DefaultAttributeIndex", "int", "Integer", "",0
-			P: "Lcl Translation", "Lcl Translation", "", "A",-44.0974304199219,0,-47.4817138671875
+			P: "Lcl Translation", "Lcl Translation", "", "A",-44.8787567138672,-0.0330619812011719,-47.7772766113281
 			P: "Lcl Rotation", "Lcl Rotation", "", "A",90.0000025044781,-0,0
 			P: "Lcl Scaling", "Lcl Scaling", "", "A",0.1,0.1,0.1
 			P: "mr displacement use global settings", "Bool", "", "AU",1
@@ -467,7 +467,7 @@ Objects:  {
 		Shading: T
 		Culling: "CullingOff"
 	}
-	Material: 1900890832, "Material::_farmpalette", "" {
+	Material: 2498099984, "Material::_farmpalette", "" {
 		Version: 102
 		ShadingModel: "phong"
 		MultiLayer: 0
@@ -489,7 +489,7 @@ Objects:  {
 			P: "Reflectivity", "double", "Number", "",0
 		}
 	}
-	Video: 1849053808, "Video::Map #6", "Clip" {
+	Video: 1837595568, "Video::Map #6", "Clip" {
 		Type: "Clip"
 		Properties70:  {
 			P: "Path", "KString", "XRefUrl", "", "H:\_Git\SlidyTown\Source\World\Farm\farm.png"
@@ -498,7 +498,7 @@ Objects:  {
 		Filename: "H:\_Git\SlidyTown\Source\World\Farm\farm.png"
 		RelativeFilename: "farm.png"
 	}
-	Texture: 1900891312, "Texture::Map #6", "" {
+	Texture: 2498100464, "Texture::Map #6", "" {
 		Type: "TextureVideoClip"
 		Version: 202
 		TextureName: "Texture::Map #6"
@@ -522,20 +522,20 @@ Objects:  {
 Connections:  {
 	
 	;Model::b_36_01, Model::RootNode
-	C: "OO",1845048896,0
+	C: "OO",2593460672,0
 	
 	;AnimLayer::BaseLayer, AnimStack::Take 001
-	C: "OO",1528539760,2374581536
+	C: "OO",2509094704,2588009632
 	
 	;Geometry::, Model::b_36_01
-	C: "OO",1837801984,1845048896
+	C: "OO",1837804704,2593460672
 	
 	;Material::_farmpalette, Model::b_36_01
-	C: "OO",1900890832,1845048896
+	C: "OO",2498099984,2593460672
 	
 	;Texture::Map #6, Material::_farmpalette
-	C: "OP",1900891312,1900890832, "DiffuseColor"
+	C: "OP",2498100464,2498099984, "DiffuseColor"
 	
 	;Video::Map #6, Texture::Map #6
-	C: "OO",1849053808,1900891312
+	C: "OO",1837595568,2498100464
 }
