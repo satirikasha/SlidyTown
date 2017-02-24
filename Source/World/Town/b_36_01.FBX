@@ -10,11 +10,11 @@ FBXHeaderExtension:  {
 		Version: 1000
 		Year: 2017
 		Month: 2
-		Day: 22
-		Hour: 20
-		Minute: 0
-		Second: 44
-		Millisecond: 560
+		Day: 24
+		Hour: 16
+		Minute: 52
+		Second: 37
+		Millisecond: 781
 	}
 	Creator: "FBX SDK/FBX Plugins version 2017.0.1"
 	SceneInfo: "SceneInfo::GlobalInfo", "UserData" {
@@ -36,13 +36,13 @@ FBXHeaderExtension:  {
 			P: "Original|ApplicationVendor", "KString", "", "", "Autodesk"
 			P: "Original|ApplicationName", "KString", "", "", "3ds Max"
 			P: "Original|ApplicationVersion", "KString", "", "", "2017"
-			P: "Original|DateTime_GMT", "DateTime", "", "", "22/02/2017 17:00:44.559"
+			P: "Original|DateTime_GMT", "DateTime", "", "", "24/02/2017 13:52:37.780"
 			P: "Original|FileName", "KString", "", "", "H:\_Git\SlidyTown\Source\World\Town\b_36_01.FBX"
 			P: "LastSaved", "Compound", "", ""
 			P: "LastSaved|ApplicationVendor", "KString", "", "", "Autodesk"
 			P: "LastSaved|ApplicationName", "KString", "", "", "3ds Max"
 			P: "LastSaved|ApplicationVersion", "KString", "", "", "2017"
-			P: "LastSaved|DateTime_GMT", "DateTime", "", "", "22/02/2017 17:00:44.559"
+			P: "LastSaved|DateTime_GMT", "DateTime", "", "", "24/02/2017 13:52:37.780"
 			P: "Original|ApplicationActiveProject", "KString", "", "", "C:\Users\3d\Documents\3dsMax"
 			P: "Original|ApplicationNativeFile", "KString", "", "", "H:\#WORK\MY\SlidyTown\3d_char\Cow\Cow.max"
 		}
@@ -79,7 +79,7 @@ GlobalSettings:  {
 
 Documents:  {
 	Count: 1
-	Document: 2378803824, "", "Scene" {
+	Document: 1065376848, "", "Scene" {
 		Properties70:  {
 			P: "SourceObject", "object", "", ""
 			P: "ActiveAnimStackName", "KString", "", "", ""
@@ -302,9 +302,9 @@ Definitions:  {
 ;------------------------------------------------------------------
 
 Objects:  {
-	Geometry: 2396085024, "Geometry::", "Mesh" {
+	Geometry: 2571894448, "Geometry::", "Mesh" {
 		Properties70:  {
-			P: "Color", "ColorRGB", "Color", "",0.525490196078431,0.431372549019608,0.0313725490196078
+			P: "Color", "ColorRGB", "Color", "",0,0,0
 		}
 		Vertices: *2823 {
 			a: -180,-3.0517578125e-05,0.431842446327209,-180,29.9999694824219,0.431828141212463,-180,-3.0517578125e-05,10.4318428039551,-180,29.9999694824219,10.4318284988403,-170,-140.000030517578,10.4319095611572,-170,-30.0000305175781,10.4318571090698,-170,-70.0000305175781,20.4318752288818,-170,-30.0000305175781,20.4318561553955,-170,49.9999694824219,20.4318180084229,-170,49.9999694824219,30.4318180084229,-170,159.999969482422,30.4317646026611,-170,-159.999984741211,110.431922912598,-170,-9.99993896484375,220.431838989258,-170,-159.999923706055,230.431915283203,-160,-150.000030517578,10.4319143295288,-160,-140.000030517578,10.4319095611572,-160,-20.0000305175781,10.4318523406982,-160,-150.000015258789,20.4319133758545,-160,-140.000015258789,20.4319095611572,-160,-30.0000305175781,20.4318561553955,-160,-20.0000305175781,20.4318523406982,-160,-60.0000305175781,30.4318714141846,-160,-30.0000305175781,30.4318561553955,-160,-139.999984741211,90.4319076538086,-160,-60,90.4318695068359,-160,-149.999969482422,120.431915283203,-160,-19.9999694824219,120.431854248047,-160,-139.999969482422,140.431900024414,-160,-29.9999694824219,140.431854248047,-160,-69.9999389648438,200.431869506836,-160,-59.9999389648438,200.431869506836,-160,-29.9999389648438,200.431854248047,-160,-19.9999389648438,220.431838989258,-150,-10.0000305175781,10.4318475723267,-150,-150.000015258789,20.4319133758545,-150,-20.0000305175781,20.4318523406982,-150,-10.0000305175781,20.4318466186523,-150,-110.000030517578,30.4318943023682,-150,-70.0000305175781,30.4318752288818,-150,-139.999984741211,90.4319076538086,-150,-30,90.4318618774414,-150,-109.999969482422,140.431884765625,-150,-99.9999694824219,140.431884765625,-150,-69.9999694824219,140.431869506836,-150,-59.9999389648438,200.431869506836,-150,-29.9999389648438,200.431854248047,-150,-129.999938964844,220.431900024414,-150,-49.9999389648438,220.431854248047,-150,-129.999908447266,230.431900024414,-140,59.9999694824219,30.4318141937256,-140,89.9999694824219,30.4317989349365,-140,60,40.4318161010742,
@@ -534,16 +534,18 @@ Objects:  {
 			}
 		}
 	}
-	Model: 2729642928, "Model::b_36_01", "Mesh" {
+	Model: 2581930400, "Model::b_36_01", "Mesh" {
 		Version: 232
 		Properties70:  {
+			P: "ScalingOffset", "Vector3D", "Vector", "",0,0,1.4210854715202e-14
 			P: "PreRotation", "Vector3D", "Vector", "",-90,-0,0
 			P: "RotationActive", "bool", "", "",1
 			P: "InheritType", "enum", "", "",1
 			P: "ScalingMax", "Vector3D", "Vector", "",0,0,0
-			P: "GeometricRotation", "Vector3D", "Vector", "",-90,-0,0
+			P: "GeometricTranslation", "Vector3D", "Vector", "",0,-0.431816101074219,0.000122089186334051
+			P: "GeometricRotation", "Vector3D", "Vector", "",-90,180,4.07111003979457e-13
 			P: "DefaultAttributeIndex", "int", "Integer", "",0
-			P: "Lcl Translation", "Lcl Translation", "", "A",-44.0974304199219,-2.5,127.110571289063
+			P: "Lcl Translation", "Lcl Translation", "", "A",-207.389794921875,0,-96.4357055664063
 			P: "Lcl Rotation", "Lcl Rotation", "", "A",90.0000025044781,-0,0
 			P: "Lcl Scaling", "Lcl Scaling", "", "A",0.1,0.1,0.1
 			P: "mr displacement use global settings", "Bool", "", "AU",1
@@ -558,7 +560,7 @@ Objects:  {
 		Shading: T
 		Culling: "CullingOff"
 	}
-	Material: 539349936, "Material::_Townpalette", "" {
+	Material: 2576818784, "Material::_Townpalette", "" {
 		Version: 102
 		ShadingModel: "phong"
 		MultiLayer: 0
@@ -580,7 +582,7 @@ Objects:  {
 			P: "Reflectivity", "double", "Number", "",0
 		}
 	}
-	Video: 1797489968, "Video::Map #2", "Clip" {
+	Video: 2553211392, "Video::Map #2", "Clip" {
 		Type: "Clip"
 		Properties70:  {
 			P: "Path", "KString", "XRefUrl", "", "H:\#WORK\MY\SlidyTown\3d_char\Town\Town.png"
@@ -589,7 +591,7 @@ Objects:  {
 		Filename: "H:\#WORK\MY\SlidyTown\3d_char\Town\Town.png"
 		RelativeFilename: "..\..\..\..\..\#WORK\MY\SlidyTown\3d_char\Town\Town.png"
 	}
-	Texture: 539350896, "Texture::Map #2", "" {
+	Texture: 2576805824, "Texture::Map #2", "" {
 		Type: "TextureVideoClip"
 		Version: 202
 		TextureName: "Texture::Map #2"
@@ -613,20 +615,20 @@ Objects:  {
 Connections:  {
 	
 	;Model::b_36_01, Model::RootNode
-	C: "OO",2729642928,0
+	C: "OO",2581930400,0
 	
 	;AnimLayer::BaseLayer, AnimStack::Take 001
-	C: "OO",2183858800,1654649952
+	C: "OO",2578223312,1252812016
 	
 	;Geometry::, Model::b_36_01
-	C: "OO",2396085024,2729642928
+	C: "OO",2571894448,2581930400
 	
 	;Material::_Townpalette, Model::b_36_01
-	C: "OO",539349936,2729642928
+	C: "OO",2576818784,2581930400
 	
 	;Texture::Map #2, Material::_Townpalette
-	C: "OP",539350896,539349936, "DiffuseColor"
+	C: "OP",2576805824,2576818784, "DiffuseColor"
 	
 	;Video::Map #2, Texture::Map #2
-	C: "OO",1797489968,539350896
+	C: "OO",2553211392,2576805824
 }
