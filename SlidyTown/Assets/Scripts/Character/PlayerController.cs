@@ -31,14 +31,22 @@ public class PlayerController : SingletonBehaviour<PlayerController> {
             pickup.OnPickedUp();
             if (OnPickedUp != null)
                 OnPickedUp(pickup);
+
+            return;
         }
-        else {
-            MovementController.StopMovement();
-            Instantiate(WorldObjectProvider.GetWorldObject("DestroyEffect"), this.transform.position, Quaternion.identity);
-            this.transform.GetChild(0).gameObject.SetActive(false);
-            if (OnPlayerDied != null)
-                OnPlayerDied();
+
+#if UNITY_EDITOR
+        if (WorldDebugger.Immortal)
+            return;
+#endif
+        MovementController.StopMovement();
+        var destroyEffect = WorldObjectProvider.GetWorldObject("DestroyEffect");
+        if (destroyEffect != null) {
+            Instantiate(destroyEffect, this.transform.position, Quaternion.identity);
         }
+        this.transform.GetChild(0).gameObject.SetActive(false);
+        if (OnPlayerDied != null)
+            OnPlayerDied();
     }
 
     private void UpdateInput() {

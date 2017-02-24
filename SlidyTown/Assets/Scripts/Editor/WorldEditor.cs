@@ -34,5 +34,14 @@ class WorldEditor : EditorWindow {
         WorldSnapper.PlaneHeight = EditorGUILayout.FloatField("Plane Height", WorldSnapper.PlaneHeight);
 
         EditorGUI.indentLevel = 0;
+
+        EditorGUILayout.Space();
+        EditorGUILayout.LabelField("Debugging", EditorStyles.boldLabel);
+        EditorGUI.indentLevel = 1;
+
+        WorldDebugger.Immortal = EditorGUILayout.Toggle("Immortal Mode", WorldDebugger.Immortal);
+
+        EditorGUI.indentLevel = 0;
+
     }
 }

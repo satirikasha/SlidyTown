@@ -64,7 +64,7 @@ public static class WorldSnapper {
 
     private static void SnapSelection() {
         foreach (var transform in Selection.transforms) {
-            if (transform.GetComponent<WorldObject>() != null)
+            if (transform.GetComponent<ISnapped>() != null)
                 transform.localPosition = SnapPosition(transform.localPosition);
         }
     }

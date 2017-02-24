@@ -5,7 +5,8 @@ using UnityEngine;
 
 [SelectionBase]
 [ExecuteInEditMode]
-public class WorldObject : MonoBehaviour {
+[DefaultExecutionOrder(-200)]
+public class WorldObject : MonoBehaviour, ISnapped {
 
     private string CleanName {
         get {

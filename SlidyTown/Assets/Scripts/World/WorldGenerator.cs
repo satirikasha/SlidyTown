@@ -18,6 +18,10 @@ public class WorldGenerator : MonoBehaviour {
     private Queue<WorldChunk> _CurrentChunks = new Queue<WorldChunk>();
     private List<WorldChunk> _Chunks = new List<WorldChunk>();
 
+    void Awake() {
+        PreloadChunks();
+    }
+
     void Start() {
         _LastChunkPosition = -Step;
         Update();
@@ -26,6 +30,13 @@ public class WorldGenerator : MonoBehaviour {
     void Update() {
         if (PlayerController.LocalPlayer.transform.position.z > AllowedPosition)
             PrepareNextChunk();
+    }
+
+    private void PreloadChunks() {
+        foreach (var chunkData in ChunkConfig.Instance.Chunks) {
+            CreateChunk(chunkData.ID);
+            CreateChunk(chunkData.ID);
+        } 
     }
 
     private void PrepareNextChunk() {

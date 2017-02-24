@@ -17,7 +17,7 @@ public class ApplicationManager : SingletonBehaviour<ApplicationManager> {
     private IEnumerator RestartTask() {
         UIManager.SetCurrentPanel("LoadingPanel");
         LogoWidget.Instance.Show();
-        yield return new WaitUntil(() => UIManager.CurrentPanel != null && UIManager.CurrentPanel.name == "LoadingPanel");
+        yield return new WaitUntil(() => UIManager.CurrentPanel != null && UIManager.CurrentPanel.name == "LoadingPanel" && LogoWidget.Instance.FullyVisible);
         SceneManager.UnloadSceneAsync(GameManager.Instance.gameObject.scene);
         yield return LoadGameTask();
     }

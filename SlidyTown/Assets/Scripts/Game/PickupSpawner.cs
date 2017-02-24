@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PickupSpawner : MonoBehaviour {
+[SelectionBase]
+public class PickupSpawner : MonoBehaviour, ISnapped {
 
     [Range(0,1)]
     public float Probability;
@@ -28,4 +29,13 @@ public class PickupSpawner : MonoBehaviour {
             obj.transform.localRotation = Quaternion.identity;
         }
     }
+
+#if UNITY_EDITOR
+    void OnDrawGizmos() {
+        for (int i = 0; i < this.transform.childCount; i++) {
+            Gizmos.color = Color.Lerp(Color.black, Color.green, Probability);
+            Gizmos.DrawWireSphere(this.transform.GetChild(i).position + Vector3.up * 0.5f, 0.5f);
+        }
+    }
+#endif
 }
