@@ -7,6 +7,7 @@ public class ApplicationManager : SingletonBehaviour<ApplicationManager> {
 
     
     protected override void Awake() {
+        ApplySettings();
         StartCoroutine(LoadGameTask());
     }
 
@@ -30,5 +31,9 @@ public class ApplicationManager : SingletonBehaviour<ApplicationManager> {
         yield return new WaitUntil(() => LogoWidget.Instance.FullyVisible);
         UIManager.SetCurrentPanel("StartPanel");
         CameraArm.Instance.SnapToTarget();
+    }
+
+    public void ApplySettings() {
+        Application.targetFrameRate = 60;
     }
 }
