@@ -19,6 +19,12 @@ public class MovementController : MonoBehaviour {
         }
     }
 
+    public bool IsTurning {
+        get {
+            return Direction != TargetDirection;
+        }
+    }
+
     private bool _MovingRight = true;
     private bool _AllowMovement = true;
 

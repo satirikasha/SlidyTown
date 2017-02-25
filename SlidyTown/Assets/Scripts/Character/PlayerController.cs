@@ -14,6 +14,7 @@ public class PlayerController : SingletonBehaviour<PlayerController> {
     public event Action OnPlayerDied;
     public event Action<PickupItem> OnPickedUp;
 
+    public bool Dead { get; private set; }
     public MovementController MovementController { get; private set; }
 
     protected override void Awake() {
@@ -39,6 +40,7 @@ public class PlayerController : SingletonBehaviour<PlayerController> {
         if (WorldDebugger.Immortal)
             return;
 #endif
+        Dead = true;
         MovementController.StopMovement();
         var destroyEffect = WorldObjectProvider.GetWorldObject("DestroyEffect");
         if (destroyEffect != null) {

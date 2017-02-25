@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class GameManager : SingletonBehaviour<GameManager> {
 
+    public int Score { get; private set; }
+
     public bool IsPlaying { get; private set; }
 
     protected override void Awake() {
@@ -13,7 +15,8 @@ public class GameManager : SingletonBehaviour<GameManager> {
     }
 
     void Start() {
-        PlayerController.LocalPlayer.OnPlayerDied += () => Loose(2);
+        PlayerController.LocalPlayer.OnPlayerDied += () => Finish(2);
+        PlayerController.LocalPlayer.OnPickedUp += _ => Score++;
     }
 
     public void StartLevel() {
@@ -23,11 +26,15 @@ public class GameManager : SingletonBehaviour<GameManager> {
         Time.timeScale = 1;
     }
 
-    public void Loose(float delay) {
-        StartCoroutine(LooseTask(delay));
+    public void Finish(float delay) {
+        StartCoroutine(FinishTask(delay));
     }
 
-    private IEnumerator LooseTask(float delay) {
+    private IEnumerator FinishTask(float delay) {
+        if(SaveManager.Data.MaxPoints < Score) {
+            SaveManager.Data.MaxPoints = Score;
+        }
+        SaveManager.Data.Coins += Score;
         yield return new WaitForSeconds(delay);
         UIManager.SetCurrentPanel("FinishPanel");
     }

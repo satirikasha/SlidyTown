@@ -7,6 +7,7 @@ public class ApplicationManager : SingletonBehaviour<ApplicationManager> {
 
     
     protected override void Awake() {
+        SaveManager.Load();
         ApplySettings();
         StartCoroutine(LoadGameTask());
     }
@@ -19,6 +20,7 @@ public class ApplicationManager : SingletonBehaviour<ApplicationManager> {
         UIManager.SetCurrentPanel("LoadingPanel");
         LogoWidget.Instance.Show();
         yield return new WaitUntil(() => UIManager.CurrentPanel != null && UIManager.CurrentPanel.name == "LoadingPanel" && LogoWidget.Instance.FullyVisible);
+        SaveManager.Save();
         SceneManager.UnloadSceneAsync(GameManager.Instance.gameObject.scene);
         yield return LoadGameTask();
     }
