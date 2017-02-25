@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 562acbede54005e4c9c6b2b876925e94
-timeCreated: 1487609235
+guid: 293bb421a1e0d624a9a6b03a661d752a
+timeCreated: 1488039722
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
@@ -9,7 +9,7 @@ ModelImporter:
     400000: //RootNode
     2300000: //RootNode
     3300000: //RootNode
-    4300000: flower_01
+    4300000: u_3_01
   materials:
     importMaterials: 1
     materialName: 0
