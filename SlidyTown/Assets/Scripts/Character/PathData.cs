@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class PathData : MonoBehaviour {
 
-    public const float MaxLength = 20;
+    public const float MaxLength = 35;
 
     public float Length { get; private set; }
 
@@ -64,11 +64,6 @@ public class PathData : MonoBehaviour {
     void OnDrawGizmos() {
         if (_PathPoints != null && _PathPoints.Count > 0) {
             Gizmos.color = Color.red;
-            Gizmos.DrawCube(GetPosition(1), Vector3.one);
-            Gizmos.DrawCube(GetPosition(2), Vector3.one);
-            Gizmos.DrawCube(GetPosition(3), Vector3.one);
-            Gizmos.DrawCube(GetPosition(4), Vector3.one);
-            Gizmos.DrawCube(GetPosition(5), Vector3.one);
             Gizmos.DrawLine(this.transform.position, _PathPoints.Last());
             for (int i = 1; i < _PathPoints.Count; i++) {
                 Gizmos.DrawSphere(_PathPoints.ElementAt(i), 0.1f);
