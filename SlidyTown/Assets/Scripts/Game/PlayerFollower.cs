@@ -4,13 +4,11 @@ using UnityEngine;
 
 public class PlayerFollower : MonoBehaviour {
 
-    public int Index;
+    public float Distance = 2;
 
-	void Start () {
-		
-	}
+    public int Index;
 	
-	void Update () {
-		
+	protected virtual void Update () {
+       this.transform.position = PlayerController.LocalPlayer.PathData.GetPosition(Distance);
 	}
 }

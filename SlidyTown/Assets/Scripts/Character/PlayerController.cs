@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class PlayerController : SingletonBehaviour<PlayerController> {
 
+    public const int MaxFollowers = 7;
+
     public static PlayerController LocalPlayer {
         get {
             return Instance;
@@ -16,10 +18,12 @@ public class PlayerController : SingletonBehaviour<PlayerController> {
 
     public bool Dead { get; private set; }
     public MovementController MovementController { get; private set; }
+    public PathData PathData { get; private set; }
 
     protected override void Awake() {
         base.Awake();
         MovementController = this.GetComponent<MovementController>();
+        PathData = this.GetComponent<PathData>();
     }
 
     void Update() {
