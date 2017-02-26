@@ -12,6 +12,6 @@ public class CoinWidget : MonoBehaviour {
 	}
 	
 	void Update () {
-        _Text.text = SaveManager.Data.Coins.ToString();	
+        _Text.text = SaveManager.Data.Coins.ToString();
 	}
 }
