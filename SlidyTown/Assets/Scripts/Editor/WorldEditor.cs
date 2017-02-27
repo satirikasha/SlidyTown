@@ -43,5 +43,14 @@ class WorldEditor : EditorWindow {
 
         EditorGUI.indentLevel = 0;
 
+        EditorGUILayout.Space();
+        EditorGUILayout.LabelField("Assets", EditorStyles.boldLabel);
+        EditorGUI.indentLevel = 1;
+
+        if (GUILayout.Button("Process Chunks"))
+            ChunkTools.ProcessChunks();
+
+        EditorGUI.indentLevel = 0;
+
     }
 }
