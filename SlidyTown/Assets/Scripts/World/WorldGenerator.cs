@@ -19,7 +19,7 @@ public class WorldGenerator : MonoBehaviour {
     private List<WorldChunk> _Chunks = new List<WorldChunk>();
 
     void Awake() {
-        PreloadChunks();
+        //PreloadChunks();
     }
 
     void Start() {
