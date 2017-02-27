@@ -51,6 +51,7 @@ public static class SaveManager {
 
     private static SaveData GetDefaultData() {
         return new SaveData() {
+            Version = 0,
             Coins = 0,
             MaxPoints = 0,
             UnlockedWorlds = new List<string>() { "Farm" }
@@ -60,6 +61,7 @@ public static class SaveManager {
 
 [Serializable]
 public class SaveData {
+    public int Version;
     public int Coins;
     public int MaxPoints;
     public List<string> UnlockedWorlds;

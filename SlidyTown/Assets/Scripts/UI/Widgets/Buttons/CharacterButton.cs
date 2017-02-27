@@ -1,16 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class CharcaterButton : MonoBehaviour {
+public class CharacterButton : MonoBehaviour {
 
-	// Use this for initialization
 	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
+        this.GetComponent<Button>().onClick.AddListener(() => UIManager.SetCurrentPanel("CharacterPanel"));
+        LogoWidget.Instance.Hide();
 	}
 }
