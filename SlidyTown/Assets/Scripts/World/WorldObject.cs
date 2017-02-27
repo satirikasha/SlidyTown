@@ -8,6 +8,8 @@ using UnityEngine;
 [DefaultExecutionOrder(-200)]
 public class WorldObject : MonoBehaviour, ISnapped {
 
+	private const int MaxRefreshDelayFrames = 10;
+
     private string CleanName {
         get {
             return this.name.Split(' ').FirstOrDefault();
@@ -25,7 +27,25 @@ public class WorldObject : MonoBehaviour, ISnapped {
         WorldObjectProvider.OnWorldChanged -= Refresh;
     }
 
-    public void Refresh() {
+
+	public void Refresh(){
+//#if UNITY_EDITOR
+		//RefreshImmediate();
+//#else
+		StartCoroutine(RefreshTask());
+//#endif
+	}
+
+	private IEnumerator RefreshTask(){
+		var a = Random.Range(0,MaxRefreshDelayFrames);
+		for (int i = 0; i <= a; i++) {
+			yield return null;
+		}
+		Debug.Log (this.name + " " + a);
+		RefreshImmediate ();
+	}
+
+	public void RefreshImmediate() {
         var source = WorldObjectProvider.GetWorldObject<GameObject>(this.CleanName);
         if (source != null) {
             var obj = Instantiate(source, this.transform, false);
