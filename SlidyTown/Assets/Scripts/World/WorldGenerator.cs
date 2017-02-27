@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class WorldGenerator : MonoBehaviour {
+public class WorldGenerator : SingletonBehaviour<WorldGenerator> {
 
     public float Step = 100;
 
@@ -13,23 +13,43 @@ public class WorldGenerator : MonoBehaviour {
         }
     }
 
+    private static Transform ChunksPoolHost {
+        get {
+            return _ChunksPoolHost;
+        }
+    }
+    private static Transform _ChunksPoolHost;
+
     private int _LastChunkID;
     private float _LastChunkPosition;
     private Queue<WorldChunk> _CurrentChunks = new Queue<WorldChunk>();
-    private List<WorldChunk> _Chunks = new List<WorldChunk>();
+    private static List<WorldChunk> _Chunks = new List<WorldChunk>();
 
-    void Awake() {
-        //PreloadChunks();
-    }
-
-    void Start() {
+    protected override void Awake() {
+        base.Awake();
+        InitializeChunkPool();
         _LastChunkPosition = -Step;
         Update();
+    }
+
+    protected override void OnDestroy() {
+        base.OnDestroy();
+        foreach(var chunk in _CurrentChunks) {
+            ReleaseChunk(chunk);
+        }
     }
 
     void Update() {
         if (PlayerController.LocalPlayer.transform.position.z > AllowedPosition)
             PrepareNextChunk();
+    }
+
+    private void InitializeChunkPool() {
+        if (_ChunksPoolHost == null) {
+            _ChunksPoolHost = new GameObject("ChunksPool").transform;
+            DontDestroyOnLoad(_ChunksPoolHost);
+            Instance.PreloadChunks();
+        }
     }
 
     private void PreloadChunks() {
@@ -42,15 +62,23 @@ public class WorldGenerator : MonoBehaviour {
     private void PrepareNextChunk() {
         var chunkID = EvaluateNextChunkID();
         var chunk = GetChunk(chunkID);
+        chunk.transform.SetParent(this.transform);
         chunk.transform.position = new Vector3(0, 0, _LastChunkPosition + Step);
         chunk.gameObject.SetActive(true);
         _CurrentChunks.Enqueue(chunk);
         if(_CurrentChunks.Count > 3) {
-            _CurrentChunks.Dequeue().gameObject.SetActive(false);
+           ReleaseChunk(_CurrentChunks.Dequeue());
         }
 
         _LastChunkPosition += Step;
         _LastChunkID = chunkID;
+    }
+
+    private void ReleaseChunk(WorldChunk chunk) {
+        chunk.gameObject.SetActive(false);
+        if (ChunksPoolHost) {
+            chunk.transform.SetParent(ChunksPoolHost);
+        }
     }
 
     private int EvaluateNextChunkID() {
@@ -67,7 +95,7 @@ public class WorldGenerator : MonoBehaviour {
     }
 
     private WorldChunk CreateChunk(int id) {
-        var chunk = Instantiate<WorldChunk>(ChunkConfig.Instance.GetChunkData(id).Prefab, this.transform);
+        var chunk = Instantiate<WorldChunk>(ChunkConfig.Instance.GetChunkData(id).Prefab, ChunksPoolHost);
         chunk.gameObject.SetActive(false);
         _Chunks.Add(chunk);
         return chunk;
