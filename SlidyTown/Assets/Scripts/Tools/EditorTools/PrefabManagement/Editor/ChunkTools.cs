@@ -10,7 +10,6 @@ public static class ChunkTools {
     private static string ChunksPath = "Assets/Prefabs/Chunks";
 
     public static void ProcessChunks() {
-        Debug.Log("ProcessChunks");
         var assetPaths = AssetDatabase.FindAssets("t:GameObject", new string[] { ChunksPath });
 
         foreach (var assetPath in assetPaths) {
