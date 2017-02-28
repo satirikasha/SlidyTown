@@ -11,10 +11,6 @@ public class CameraArm : SingletonBehaviour<CameraArm> {
     public float DistanceDamping = 2;
     public float AngleDamping = 3;
 
-    void Start() {
-        SnapToTarget();
-    }
-
     void Update() {
         if (PlayerController.LocalPlayer != null) {
             this.transform.position = Vector3.Lerp(

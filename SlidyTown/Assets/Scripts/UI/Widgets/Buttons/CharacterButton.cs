@@ -6,7 +6,9 @@ using UnityEngine.UI;
 public class CharacterButton : MonoBehaviour {
 
 	void Start () {
-        this.GetComponent<Button>().onClick.AddListener(() => UIManager.SetCurrentPanel("CharacterPanel"));
-        LogoWidget.Instance.Hide();
+        this.GetComponent<Button>().onClick.AddListener(() => {
+            LogoWidget.Instance.Hide();
+            UIManager.SetCurrentPanel("CharacterPanel");
+        });
 	}
 }

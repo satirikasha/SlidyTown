@@ -32,7 +32,6 @@ public class ApplicationManager : SingletonBehaviour<ApplicationManager> {
         SceneManager.SetActiveScene(SceneManager.GetSceneByName("Game"));
         yield return new WaitUntil(() => LogoWidget.Instance.FullyVisible);
         UIManager.SetCurrentPanel("StartPanel");
-        CameraArm.Instance.SnapToTarget();
     }
 
     public void ApplySettings() {

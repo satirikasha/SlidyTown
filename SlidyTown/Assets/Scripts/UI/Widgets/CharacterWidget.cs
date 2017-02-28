@@ -6,11 +6,18 @@ public class CharacterWidget : MonoBehaviour {
 
     public WorldData Data;
 
-	void Start () {
+    public Transform Locked;
+    public Transform Unlocked;
+    public Transform Selected;
+    public CharacterPriceWidget Price;
+    public Transform Confirm;
+    public Transform CommingSoon;
+
+
+    void Start () {
 		
 	}
 	
-	// Update is called once per frame
 	void Update () {
 		
 	}

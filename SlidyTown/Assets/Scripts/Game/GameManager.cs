@@ -15,6 +15,7 @@ public class GameManager : SingletonBehaviour<GameManager> {
     }
 
     void Start() {
+        CameraArm.Instance.SnapToTarget();
         PlayerController.LocalPlayer.OnPlayerDied += () => Finish(2);
         PlayerController.LocalPlayer.OnPickedUp += _ => Score++;
     }
