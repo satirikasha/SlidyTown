@@ -62,8 +62,9 @@ public class CharacterWidget : MonoBehaviour, IDeselectHandler {
     private void OnClick() {
         if(Data != null) {
             if (_Unlocked) {
-                WorldObjectProvider.CurrentWorld = Data.Name;
                 Selected.gameObject.SetActive(WorldObjectProvider.CurrentWorld == Data.Name);
+                WorldObjectProvider.CurrentWorld = Data.Name;
+                UIManager.SetCurrentPanel("StartPanel");
             }
             else {
                 if (Data.Price <= SaveManager.Data.Coins) {
@@ -73,6 +74,9 @@ public class CharacterWidget : MonoBehaviour, IDeselectHandler {
                         SaveManager.Save();
                         RefreshLock();
                         Confirm.gameObject.SetActive(false);
+                        Selected.gameObject.SetActive(WorldObjectProvider.CurrentWorld == Data.Name);
+                        WorldObjectProvider.CurrentWorld = Data.Name;
+                        UIManager.SetCurrentPanel("StartPanel");
                     }
                     else {
                         Confirm.gameObject.SetActive(true);
