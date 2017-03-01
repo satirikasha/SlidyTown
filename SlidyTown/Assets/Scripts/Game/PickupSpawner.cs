@@ -8,7 +8,19 @@ public class PickupSpawner : MonoBehaviour, ISnapped {
     [Range(0,1)]
     public float Probability;
 
+    void Awake() {
+        WorldObjectProvider.OnWorldChanged += Respawn;
+    }
+
+    void OnDestroy() {
+        WorldObjectProvider.OnWorldChanged -= Respawn;
+    }
+
     void OnEnable() {
+        Respawn();
+    }
+
+    private void Respawn() {
         Clear();
         if (Random.value < Probability)
             Spawn();

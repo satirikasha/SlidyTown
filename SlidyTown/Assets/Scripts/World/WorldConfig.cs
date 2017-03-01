@@ -21,4 +21,6 @@ public class WorldData {
     public string Name;
     public string Title;
     public int Price;
+    public Sprite ColoredPreview;
+    public Sprite SilouetePreview;
 }

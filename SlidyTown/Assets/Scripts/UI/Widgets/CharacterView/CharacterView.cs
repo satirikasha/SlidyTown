@@ -13,8 +13,8 @@ public class CharacterView : MonoBehaviour {
 	}
 
     private void GenerateContent() {
-        Content.aspectRatio /= WorldConfig.Instance.Data.Count / 3 + 1;
-        for (int i = 0; i < WorldConfig.Instance.Data.Count / 3 + 1; i++) {
+        Content.aspectRatio /= WorldConfig.Instance.Data.Count / 3 + 2;
+        for (int i = 0; i < WorldConfig.Instance.Data.Count / 3 + 2; i++) {
             var row = AddRow();
             for (int j = 0; j < 3; j++) {
                 if(WorldConfig.Instance.Data.Count > i * 3 + j) {
@@ -41,6 +41,6 @@ public class CharacterView : MonoBehaviour {
     private void AddWidget(Transform row, WorldData data) {
         var widget = Instantiate(Prefab, row);
         widget.transform.localScale = Vector3.one;
-        widget.Data = data;
+        widget.SetWorldData(data);
     }
 }
