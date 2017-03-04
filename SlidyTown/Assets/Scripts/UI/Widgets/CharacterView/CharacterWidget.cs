@@ -67,9 +67,9 @@ public class CharacterWidget : MonoBehaviour, IDeselectHandler {
                 UIManager.SetCurrentPanel("StartPanel");
             }
             else {
-                if (Data.Price <= SaveManager.Data.Coins) {
+                if (Data.Price <= CurrencyManager.Coins) {
                     if (Confirm.gameObject.activeSelf) {
-                        SaveManager.Data.Coins -= Data.Price;
+                        CurrencyManager.SpendCoins(Data.Price);
                         SaveManager.Data.UnlockedWorlds.Add(Data.Name);
                         SaveManager.Save();
                         RefreshLock();

@@ -28,7 +28,7 @@ public class FinishPanel : SingletonBehaviour<FinishPanel> {
     }
 
     public void ApplyBonus() {
-        SaveManager.Data.Coins += GameManager.Instance.Score * 2;
+        CurrencyManager.AddCoins(GameManager.Instance.Score * 2);
         Expired = true;
     }
 

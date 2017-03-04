@@ -11,7 +11,7 @@ public class CharacterPriceWidget : MonoBehaviour {
     public int Price { get; private set; }
 	
 	void Update () {
-        if (Price <= SaveManager.Data.Coins) {
+        if (Price <= CurrencyManager.Coins) {
             AffordablePrice.SetActive(true);
             NonAffordabledPrice.SetActive(false);
         }

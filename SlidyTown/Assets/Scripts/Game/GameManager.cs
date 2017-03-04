@@ -35,7 +35,7 @@ public class GameManager : SingletonBehaviour<GameManager> {
         if(SaveManager.Data.MaxPoints < Score) {
             SaveManager.Data.MaxPoints = Score;
         }
-        SaveManager.Data.Coins += Score;
+        CurrencyManager.AddCoins(Score);
         yield return new WaitForSeconds(delay);
         UIManager.SetCurrentPanel("FinishPanel");
     }

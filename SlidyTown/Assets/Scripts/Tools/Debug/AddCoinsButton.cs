@@ -7,8 +7,7 @@ public class AddCoinsButton : MonoBehaviour {
 
 	void Awake() {
         this.GetComponent<Button>().onClick.AddListener(() => {
-            SaveManager.Data.Coins += 100;
-            SaveManager.Save();
+            CurrencyManager.AddCoins(100);
         });
     }
 }
