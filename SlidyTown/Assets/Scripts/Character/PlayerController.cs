@@ -50,7 +50,8 @@ public class PlayerController : SingletonBehaviour<PlayerController> {
         if (destroyEffect != null) {
             Instantiate(destroyEffect, this.transform.position, Quaternion.identity);
         }
-        this.transform.GetChild(0).gameObject.SetActive(false);
+        this.GetComponentInChildren<MeshRenderer>().enabled = false;
+        //this.transform.GetChild(0).gameObject.SetActive(false);
         if (OnPlayerDied != null)
             OnPlayerDied();
     }

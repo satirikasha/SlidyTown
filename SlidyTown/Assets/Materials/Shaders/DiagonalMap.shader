@@ -27,8 +27,8 @@
 		fixed4 _Color;
 		
 		static const float2x2 _Rot = float2x2(
-			0.7, -0.7,
-			0.7, 0.7);
+			0.71, -0.71,
+			0.71, 0.71);
 
 
 		struct Input {
