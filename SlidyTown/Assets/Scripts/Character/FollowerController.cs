@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class FollowerController : MonoBehaviour {
 
-    public const int MaxFollowers = 8;
+    public const int MaxFollowers = 10;
 
     public int FollowersCount { get; private set; }
 

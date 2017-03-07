@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Advertisements;
 
 public class FinishPanel : SingletonBehaviour<FinishPanel> {
 
@@ -28,8 +29,17 @@ public class FinishPanel : SingletonBehaviour<FinishPanel> {
     }
 
     public void ApplyBonus() {
-        CurrencyManager.AddCoins(GameManager.Instance.Score * 2);
-        Expired = true;
+        if (Advertisement.IsReady("rewardedVideo")) {
+            var options = new ShowOptions { resultCallback = OnBonusApplied };
+            Advertisement.Show("rewardedVideo", options);
+        }     
+    }
+
+    private void OnBonusApplied(ShowResult result) {
+        if (result == ShowResult.Finished) {
+            CurrencyManager.AddCoins(GameManager.Instance.Score * 2);
+            Expired = true;
+        }
     }
 
     private void OnExpiredChanged() {

@@ -31,6 +31,9 @@ public class PlayerController : SingletonBehaviour<PlayerController> {
     }
 
     void OnTriggerEnter(Collider collider) {
+        if (collider.CompareTag("Follower"))
+            return;
+
         if (collider.CompareTag("Pickup")) {
             var pickup = collider.GetComponent<PickupItem>();
             pickup.OnPickedUp();
@@ -46,9 +49,10 @@ public class PlayerController : SingletonBehaviour<PlayerController> {
 #endif
         Dead = true;
         MovementController.StopMovement();
-        var destroyEffect = WorldObjectProvider.GetWorldObject("DestroyEffect");
+        var destroyEffect = VisualEffectsManager.Instance.GetEffect("DestroyEffect");
+        destroyEffect.transform.position = this.transform.position;
         if (destroyEffect != null) {
-            Instantiate(destroyEffect, this.transform.position, Quaternion.identity);
+            destroyEffect.Play();
         }
         this.GetComponentInChildren<MeshRenderer>().enabled = false;
         //this.transform.GetChild(0).gameObject.SetActive(false);

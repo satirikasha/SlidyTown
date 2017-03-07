@@ -6,10 +6,6 @@ using UnityEngine;
 
 public abstract class VisualEffect : MonoBehaviour {
 
-    protected virtual void OnDestroy() {
-        VisualEffectsManager.Instance.Unregister(this);
-    }
-
     public virtual void Play() {
         this.gameObject.SetActive(true);
         StartCoroutine(PlayTask());

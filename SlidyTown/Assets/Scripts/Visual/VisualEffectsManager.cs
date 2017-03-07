@@ -6,13 +6,8 @@ using UnityEngine;
 
 public class VisualEffectsManager : InstancedBehaviour<VisualEffectsManager> {
 
-    private static Dictionary<string, VisualEffect> _ResourcesCache = new Dictionary<string, VisualEffect>();
-    private static Dictionary<string, List<VisualEffect>> _EffectsCache = new Dictionary<string, List<VisualEffect>>();
-
-    protected override void Awake() {
-        base.Awake();
-        DontDestroyOnLoad(this);
-    }
+    private Dictionary<string, VisualEffect> _ResourcesCache = new Dictionary<string, VisualEffect>();
+    private Dictionary<string, List<VisualEffect>> _EffectsCache = new Dictionary<string, List<VisualEffect>>();
 
     public void Register(VisualEffect effect) {
         if (!_EffectsCache.ContainsKey(effect.name)) {
@@ -22,7 +17,11 @@ public class VisualEffectsManager : InstancedBehaviour<VisualEffectsManager> {
     }
 
     public void Unregister(VisualEffect effect) {
-        _EffectsCache[this.name].Remove(effect);
+        _EffectsCache[effect.name].Remove(effect);
+    }
+
+    public VisualEffect GetEffect(string name) {
+        return GetEffect<VisualEffect>(name);
     }
 
     public T GetEffect<T>(string name) where T : VisualEffect {
@@ -39,14 +38,14 @@ public class VisualEffectsManager : InstancedBehaviour<VisualEffectsManager> {
         return result;
     }
 
-    private static VisualEffect GetEffectResource(string name) {
+    private VisualEffect GetEffectResource(string name) {
         if (!_ResourcesCache.ContainsKey(name)) {
             _ResourcesCache.Add(name, WorldObjectProvider.GetWorldObject<GameObject>(name).GetComponent<VisualEffect>());
         }
         return _ResourcesCache[name];
     }
 
-    private static T GetEffectResource<T>(string name) where T : VisualEffect {
+    private T GetEffectResource<T>(string name) where T : VisualEffect {
         return GetEffectResource(name) as T;
     }
 }

@@ -5,6 +5,6 @@ using UnityEngine;
 public class PickupItem : MonoBehaviour {
 
     public virtual void OnPickedUp() {
-        Destroy(this.gameObject);
+        this.gameObject.SetActive(false);
     }
 }
