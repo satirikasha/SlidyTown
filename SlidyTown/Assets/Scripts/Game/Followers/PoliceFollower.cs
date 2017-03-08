@@ -9,34 +9,43 @@ public class PoliceFollower : PlayerFollower {
             return BaseDistance + Spacing * Index;
         }
     }
+
+    private bool _Dead;
     private float _Distance;
+    private Vector3 _PreviousPosition;
+    private float _Argessiveness;
 
     protected override void Start() {
         base.Start();
         _Distance = TargetDistance + 10;
+        _Argessiveness = Random.Range(2f, 8f);
     }
 
     protected override void Update() {
-        _Distance = Mathf.Lerp(_Distance, TargetDistance, Time.deltaTime * 0.75f);
-        if (!PlayerController.LocalPlayer.Dead) {
-            this.transform.position = PlayerController.LocalPlayer.PathData.GetPosition(_Distance);
-            var dir = PlayerController.LocalPlayer.PathData.GetPosition(_Distance - 0.5f) - this.transform.position;
-            if (dir != Vector3.zero) {
-                this.transform.forward = dir;
+        if (!_Dead) {
+            _Distance = Mathf.Lerp(_Distance, TargetDistance, Time.deltaTime * 0.75f);
+            if (!PlayerController.LocalPlayer.Dead) {
+                this.transform.position = PlayerController.LocalPlayer.PathData.GetPosition(_Distance) + Vector3.right * Mathf.Sin(Time.timeSinceLevelLoad * _Argessiveness) * 0.5f;
+                var dir = (this.transform.position - _PreviousPosition).normalized;
+                if (dir != Vector3.zero) {
+                    this.transform.forward = dir;
+                }
+                _PreviousPosition = this.transform.position;
             }
-        }
-        else {
-            this.transform.forward = Vector3.RotateTowards(this.transform.forward, TargetDirection, 0.5f * Speed * Time.deltaTime, 1).normalized;
-            this.transform.position = this.transform.position + this.transform.forward * Time.deltaTime * Speed;
+            else {
+                this.transform.forward = Vector3.RotateTowards(this.transform.forward, TargetDirection, 0.5f * Speed * Time.deltaTime, 1).normalized;
+                this.transform.position = this.transform.position + this.transform.forward * Time.deltaTime * Speed;
+            }
         }
     }
 
     protected override void OnDestroyFollower() {
-        //var splashEffect = VisualEffectsManager.Instance.GetEffect("Splash");
-        //splashEffect.transform.position = this.transform.position;
-        //if (splashEffect != null) {
-        //    splashEffect.Play();
-        //}
-        //this.gameObject.SetActive(false);
+        _Dead = true;
+        var destroyEffect = VisualEffectsManager.Instance.GetEffect("PoliceDestroy");
+        destroyEffect.transform.position = this.transform.position;
+        if (destroyEffect != null) {
+            destroyEffect.Play();
+        }
+        this.gameObject.SetActive(false);
     }
 }
