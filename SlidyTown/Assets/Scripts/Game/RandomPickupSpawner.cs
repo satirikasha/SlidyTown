@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [SelectionBase]
-public class PickupSpawner : MonoBehaviour, ISnapped {
+public class RandomPickupSpawner : MonoBehaviour, ISnapped {
 
-    [Range(0,1)]
+    [Range(0, 1)]
     public float Probability;
 
     void Awake() {
@@ -20,21 +20,19 @@ public class PickupSpawner : MonoBehaviour, ISnapped {
         Respawn();
     }
 
-    private void Respawn() {
+    public void Respawn() {
         Clear();
         if (Random.value < Probability)
             Spawn();
     }
 
-    private void Clear() {
-        for (int i = 0; i < this.transform.childCount; i++) {
-            foreach(Transform pickup in this.transform.GetChild(i)) {
-                Destroy(pickup.gameObject);
-            }
+    public void Clear() {
+        foreach (var pickup in this.GetComponentsInChildren<PickupItem>()) {
+            Destroy(pickup.gameObject); // TODO: Pool pickups and followers
         }
     }
 
-    private void Spawn() {
+    public void Spawn() {
         for (int i = 0; i < this.transform.childCount; i++) {
             var obj = Instantiate(WorldObjectProvider.GetWorldObject<GameObject>("Pickup"), this.transform.GetChild(i), false);
             obj.transform.localPosition = Vector3.zero;
@@ -45,8 +43,9 @@ public class PickupSpawner : MonoBehaviour, ISnapped {
 #if UNITY_EDITOR
     void OnDrawGizmos() {
         for (int i = 0; i < this.transform.childCount; i++) {
-            Gizmos.color = Color.Lerp(Color.black, Color.green, Probability);
-            Gizmos.DrawWireSphere(this.transform.GetChild(i).position + Vector3.up * 0.5f, 0.5f);
+            UnityEditor.Handles.color = Color.Lerp(Color.black, Color.green, Probability);
+            UnityEditor.Handles.SphereCap(this.GetInstanceID(), this.transform.GetChild(i).position + this.transform.GetChild(i).up * 0.5f, Quaternion.identity, 1);
+            UnityEditor.Handles.ArrowCap(this.GetInstanceID(), this.transform.GetChild(i).position, this.transform.GetChild(i).rotation, 1);
         }
     }
 #endif
