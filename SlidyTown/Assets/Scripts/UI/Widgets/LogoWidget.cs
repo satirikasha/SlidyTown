@@ -21,7 +21,8 @@ public class LogoWidget : SingletonBehaviour<LogoWidget> {
     IEnumerator Start() {
         yield return null;
         yield return new WaitForSecondsRealtime(0.5f);
-        SetVisibility(true);
+        if (GameManager.Instance == null || !GameManager.Instance.IsPlaying)
+            SetVisibility(true);
     }
 
     public void SetVisibility(bool visibility) {

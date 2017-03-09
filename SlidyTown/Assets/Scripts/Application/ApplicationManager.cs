@@ -31,7 +31,8 @@ public class ApplicationManager : SingletonBehaviour<ApplicationManager> {
         yield return null;
         SceneManager.SetActiveScene(SceneManager.GetSceneByName("Game"));
         yield return new WaitUntil(() => LogoWidget.Instance.FullyVisible);
-        UIManager.SetCurrentPanel("StartPanel");
+        if (GameManager.Instance == null || !GameManager.Instance.IsPlaying)
+            UIManager.SetCurrentPanel("StartPanel");
     }
 
     public void ApplySettings() {
