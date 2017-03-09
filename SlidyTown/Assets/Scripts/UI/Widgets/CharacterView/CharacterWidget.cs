@@ -62,9 +62,7 @@ public class CharacterWidget : MonoBehaviour, IDeselectHandler {
     private void OnClick() {
         if(Data != null) {
             if (_Unlocked) {
-                Selected.gameObject.SetActive(WorldObjectProvider.CurrentWorld == Data.Name);
-                WorldObjectProvider.CurrentWorld = Data.Name;
-                UIManager.SetCurrentPanel("StartPanel");
+                SetWorld(Data.Name);
             }
             else {
                 if (Data.Price <= CurrencyManager.Coins) {
@@ -74,9 +72,7 @@ public class CharacterWidget : MonoBehaviour, IDeselectHandler {
                         SaveManager.Save();
                         RefreshLock();
                         Confirm.gameObject.SetActive(false);
-                        Selected.gameObject.SetActive(WorldObjectProvider.CurrentWorld == Data.Name);
-                        WorldObjectProvider.CurrentWorld = Data.Name;
-                        UIManager.SetCurrentPanel("StartPanel");
+                        SetWorld(Data.Name);
                     }
                     else {
                         Confirm.gameObject.SetActive(true);
@@ -84,6 +80,21 @@ public class CharacterWidget : MonoBehaviour, IDeselectHandler {
                 }
             }
         }
+    }
+
+    private static Coroutine _CurrentSetWorldTask;
+    private void SetWorld(string name) {
+        if(_CurrentSetWorldTask == null) {
+            _CurrentSetWorldTask = StartCoroutine(SetWorldTask(name));
+        }
+    }
+    private IEnumerator SetWorldTask(string name) {
+        Selected.gameObject.SetActive(true);
+        yield return null;
+        WorldObjectProvider.CurrentWorld = Data.Name;
+        yield return new WaitForSecondsRealtime(0.25f);
+        UIManager.SetCurrentPanel("StartPanel");
+        _CurrentSetWorldTask = null;
     }
 
     public void OnDeselect(BaseEventData eventData) {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CharacterView : MonoBehaviour {
+public class CharacterView : SingletonBehaviour<CharacterView> {
 
     public CharacterWidget Prefab;
     public AspectRatioFitter Content;
