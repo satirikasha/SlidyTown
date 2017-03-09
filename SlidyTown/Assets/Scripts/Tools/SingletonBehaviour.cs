@@ -6,9 +6,6 @@ public class SingletonBehaviour<T> : MonoBehaviour where T : MonoBehaviour {
 
     public static T Instance {
         get {
-            if (_Instance == null) {
-                _Instance = GameObject.FindObjectOfType<T>();
-            }
             return _Instance;
         }
         private set {

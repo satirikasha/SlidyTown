@@ -32,11 +32,13 @@ public class CoinWidget : SingletonBehaviour<CoinWidget> {
 	}
 
     private IEnumerator OnCoinsAdded(int ammount) {
-        yield return new WaitUntil(() => _CanvasGroup.alpha == 1);
-        yield return new WaitForSeconds(0.5f);
-        StatusText.text = "+" + ammount;
-        _Animator.SetTrigger("ShowStatusBar");
-        yield return new WaitForSeconds(0.75f);
+        if (ammount > 0) {
+            yield return new WaitUntil(() => _CanvasGroup.alpha == 1);
+            yield return new WaitForSeconds(0.5f);
+            StatusText.text = "+" + ammount;
+            _Animator.SetTrigger("ShowStatusBar");
+            yield return new WaitForSeconds(0.75f);
+        }
         CoinText.text = CurrencyManager.Coins.ToString();
     }
 
