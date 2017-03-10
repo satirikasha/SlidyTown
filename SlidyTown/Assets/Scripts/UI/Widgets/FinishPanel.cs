@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Advertisements;
+using UnityEngine.Analytics;
 
 public class FinishPanel : SingletonBehaviour<FinishPanel> {
 
@@ -13,7 +14,7 @@ public class FinishPanel : SingletonBehaviour<FinishPanel> {
             return _Expired;
         }
         set {
-            if(_Expired != value) {
+            if (_Expired != value) {
                 _Expired = value;
                 OnExpiredChanged();
             }
@@ -25,7 +26,7 @@ public class FinishPanel : SingletonBehaviour<FinishPanel> {
     protected override void OnEnable() {
         base.OnEnable();
         if (GameManager.Instance != null) {
-            Expired = !Advertisement.IsReady("rewardedVideo") || GameManager.Instance.Score == 0;
+            Expired = !Advertisement.IsReady("rewardedVideo") || GameManager.Instance.Score < 5;
         }
         OnExpiredChanged();
     }
@@ -34,11 +35,14 @@ public class FinishPanel : SingletonBehaviour<FinishPanel> {
         if (Advertisement.IsReady("rewardedVideo")) {
             var options = new ShowOptions { resultCallback = OnBonusApplied };
             Advertisement.Show("rewardedVideo", options);
-        }     
+        }
     }
 
     private void OnBonusApplied(ShowResult result) {
         if (result == ShowResult.Finished) {
+            Analytics.CustomEvent("BonusApplied", new Dictionary<string, object> {
+                { "score", GameManager.Instance.Score}
+            });
             CurrencyManager.AddCoins(GameManager.Instance.Score * 2);
             Expired = true;
         }

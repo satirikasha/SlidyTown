@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Analytics;
 
 public class GameManager : SingletonBehaviour<GameManager> {
 
@@ -36,6 +37,11 @@ public class GameManager : SingletonBehaviour<GameManager> {
             SaveManager.Data.MaxPoints = Score;
         }
         CurrencyManager.AddCoins(Score);
+        Analytics.CustomEvent("GameFinished", new Dictionary<string, object> {
+            { "world", WorldManager.CurrentWorld },
+            { "score", Score},
+            { "coins", CurrencyManager.Coins}
+        });
         yield return new WaitForSeconds(delay);
         UIManager.SetCurrentPanel("FinishPanel");
     }
