@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using System;
+using System.Linq;
 
 public class CharacterWidget : MonoBehaviour, IDeselectHandler {
 
@@ -16,18 +17,27 @@ public class CharacterWidget : MonoBehaviour, IDeselectHandler {
     public Transform Confirm;
     public Transform CommingSoon;
 
+    private RibbonWidget _Ribbon;
+
     private bool _Unlocked;
 
     void Awake () {
+        _Ribbon = this.GetComponentInChildren<RibbonWidget>();
         this.GetComponent<Button>().onClick.AddListener(OnClick);
         WorldObjectProvider.OnWorldChanged += RefreshSelection;
 	}
 
-
-	
-	void Update () {
-		
-	}
+    void OnEnable() {
+        if (Data != null) {
+            RibbonType ribbonType;
+            if (RibbonManager.Highlighted.TryGetValue(Data.Name, out ribbonType)) {
+                _Ribbon.SetupRibbon(ribbonType);
+                RibbonManager.OnRibbonObserved(Data.Name);
+                return;
+            }
+        }
+        _Ribbon.SetupRibbon(RibbonType.None);
+    }
 
     public void SetWorldData(WorldData data) {
         Data = data;
@@ -46,6 +56,8 @@ public class CharacterWidget : MonoBehaviour, IDeselectHandler {
             Confirm.gameObject.SetActive(false);
             CommingSoon.gameObject.SetActive(true);
         }
+
+        OnEnable();
     }
 
     private void RefreshSelection() {
