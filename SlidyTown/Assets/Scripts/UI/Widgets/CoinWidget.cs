@@ -27,6 +27,7 @@ public class CoinWidget : SingletonBehaviour<CoinWidget> {
         _CanvasGroup = this.GetComponent<CanvasGroup>();
 
         CurrencyManager.OnCoinsAdded += _ => StartCoroutine(OnCoinsAdded(_));
+        CurrencyManager.OnCoinsSpent += _ => StartCoroutine(OnCoinsSpent(_));
 
         _Initialized = true;
 	}
@@ -38,6 +39,17 @@ public class CoinWidget : SingletonBehaviour<CoinWidget> {
             StatusText.text = "+" + ammount;
             _Animator.SetTrigger("ShowStatusBar");
             yield return new WaitForSeconds(0.75f);
+        }
+        CoinText.text = CurrencyManager.Coins.ToString();
+    }
+
+    private IEnumerator OnCoinsSpent(int amount) {
+        var duration = 1f;
+        var timeLeft = duration;
+        while (timeLeft > 0) {
+            CoinText.text = ((int)Mathf.Lerp(CurrencyManager.Coins, CurrencyManager.Coins + amount, timeLeft / duration)).ToString();
+            timeLeft -= Time.unscaledDeltaTime;
+            yield return null;
         }
         CoinText.text = CurrencyManager.Coins.ToString();
     }
