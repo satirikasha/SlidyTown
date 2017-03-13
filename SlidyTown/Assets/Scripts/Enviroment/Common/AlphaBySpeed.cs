@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class AlphaBySpeed : MonoBehaviour {
 
+    public float MinAlpha = 0;
+    public float MaxAlpha = 1;
     public bool UseTurnFactor;
     public float TurnFactorDamping = 1;
 
@@ -24,10 +26,11 @@ public class AlphaBySpeed : MonoBehaviour {
         UpdateTurnFactor();
 
         ControlledMaterial.SetColor("_Color", new Color(1, 1, 1,
+            Mathf.Lerp(MinAlpha, MaxAlpha,
             (PlayerController.LocalPlayer.MovementController.Speed - PlayerController.LocalPlayer.MovementController.MinSpeed) /
             (PlayerController.LocalPlayer.MovementController.MaxSpeed - PlayerController.LocalPlayer.MovementController.MinSpeed)) *
             (UseTurnFactor ? _TurnFactor : 1)
-            );
+            ));
     }
 
     private void UpdateTurnFactor() {

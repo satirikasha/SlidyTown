@@ -42,6 +42,6 @@ public class PlayerFollower : MonoBehaviour {
     }
 
     protected virtual void OnDestroyFollower() {
-
+        TargetDirection = (this.transform.forward + this.transform.right * Random.Range(-1f, 1f)).normalized;
     }
 }

@@ -25,6 +25,12 @@ public class MovementController : MonoBehaviour {
         }
     }
 
+    public bool IsMovingRight {
+        get {
+            return _MovingRight;
+        }
+    }
+
     private bool _MovingRight = true;
     private bool _AllowMovement = true;
 

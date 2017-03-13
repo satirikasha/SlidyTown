@@ -22,7 +22,7 @@ public class PathData : MonoBehaviour {
     }
 
     void Start() {
-        _PathPoints.Enqueue(this.transform.position);
+        _PathPoints.Enqueue(Vector3.back * 10);
     }
 
 	void Update () {
