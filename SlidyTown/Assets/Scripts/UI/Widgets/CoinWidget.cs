@@ -15,22 +15,26 @@ public class CoinWidget : SingletonBehaviour<CoinWidget> {
     public float TransitionTime = 0.25f;
     public Text CoinText;
     public Text StatusText;
+    public ParticleSystem CoinParticles;
 
     private Animator _Animator;
+    private RectTransform _RectTransform;
     private CanvasGroup _CanvasGroup;
     private bool _Initialized;
 
-	protected override void Awake () {
+    protected override void Awake() {
         base.Awake();
+
         CoinText.text = CurrencyManager.Coins.ToString();
         _Animator = this.GetComponent<Animator>();
         _CanvasGroup = this.GetComponent<CanvasGroup>();
+        _RectTransform = this.GetComponent<RectTransform>();
 
         CurrencyManager.OnCoinsAdded += _ => StartCoroutine(OnCoinsAdded(_));
         CurrencyManager.OnCoinsSpent += _ => StartCoroutine(OnCoinsSpent(_));
 
         _Initialized = true;
-	}
+    }
 
     private IEnumerator OnCoinsAdded(int ammount) {
         if (ammount > 0) {
@@ -39,6 +43,7 @@ public class CoinWidget : SingletonBehaviour<CoinWidget> {
             StatusText.text = "+" + ammount;
             _Animator.SetTrigger("ShowStatusBar");
             yield return new WaitForSeconds(0.75f);
+            CoinParticles.Emit(ammount);
         }
         CoinText.text = CurrencyManager.Coins.ToString();
     }
@@ -55,11 +60,14 @@ public class CoinWidget : SingletonBehaviour<CoinWidget> {
     }
 
     public void SetVisibility(bool value) {
-        if (_Initialized && _Visible != value)
+        if (_Initialized && _Visible != value) {         
             StartCoroutine(SetVisibilityTask(value));
+        }
     }
 
     private IEnumerator SetVisibilityTask(bool value) {
+        CoinText.text = CurrencyManager.Coins.ToString();
+
         _Visible = value;
 
         var delay = TransitionTime;
@@ -76,5 +84,9 @@ public class CoinWidget : SingletonBehaviour<CoinWidget> {
         }
 
         _CanvasGroup.alpha = target;
+        if (!value) {
+            StopAllCoroutines();
+            CoinParticles.Clear();
+        }
     }
 }
