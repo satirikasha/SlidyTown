@@ -9,7 +9,7 @@ public static class ChunkTools {
 
     private static string ChunksPath = "Assets/Prefabs/Chunks";
 
-    public static void ProcessChunks() {
+    public static void BakeChunks() {
         var assetPaths = AssetDatabase.FindAssets("t:GameObject", new string[] { ChunksPath });
 
         foreach (var assetPath in assetPaths) {
