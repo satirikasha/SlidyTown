@@ -70,6 +70,8 @@ public static class WorldSnapper {
     }
 
     private static Vector3 SnapPosition(Vector3 vector) {
+        if (GridSize <= 0)
+            return vector;
         var result = new Vector3();
         result.x = Mathf.Round(vector.x / GridSize) * GridSize;
         result.z = Mathf.Round(vector.z / GridSize) * GridSize;
