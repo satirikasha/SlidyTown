@@ -11,6 +11,11 @@ class WorldEditor : EditorWindow {
         EditorWindow.GetWindow(typeof(WorldEditor));
     }
 
+    void OnEnable() {
+        titleContent.text = "World Editor";
+        Selection.selectionChanged += () => this.Repaint();
+    }
+
     void OnGUI() {
 
         EditorGUILayout.Space();
@@ -32,6 +37,8 @@ class WorldEditor : EditorWindow {
         WorldSnapper.Enabled = EditorGUILayout.Toggle("Enable Snapping", WorldSnapper.Enabled);
         WorldSnapper.GridSize = EditorGUILayout.FloatField("Grid Size", WorldSnapper.GridSize);
         WorldSnapper.PlaneHeight = EditorGUILayout.FloatField("Plane Height", WorldSnapper.PlaneHeight);
+        EditorGUILayout.Space();
+        EditorGUILayout.LabelField("Selected Meshes: " + Selection.gameObjects.SelectMany(_ => _.GetComponentsInChildren<MeshFilter>()).Count());
 
         EditorGUI.indentLevel = 0;
 
