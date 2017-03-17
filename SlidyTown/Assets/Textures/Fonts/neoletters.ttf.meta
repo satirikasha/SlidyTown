@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: d9222f0e915aa3346a87b57e66fee621
+timeCreated: 1489769234
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: neoletters
+  fontNames:
+  - neoletters
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
