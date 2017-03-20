@@ -1,13 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
+[ExecuteInEditMode]
 public class WorldChunk : MonoBehaviour {
 
-    //[HideInInspector]
-    public ChunkData Data;
+    public const string ChunksPath = "Chunks";
+    public const string EnviromentPath = ChunksPath + "/Enviroment";
 
-    void Awake() {
-        //StaticBatchingUtility.Combine(this.gameObject);
-    }
+
+    [HideInInspector]
+    public ChunkData Data;
 }

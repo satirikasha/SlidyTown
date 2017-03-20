@@ -6,7 +6,7 @@ using System.Linq;
 
 class WorldEditor : EditorWindow {
 
-    [MenuItem("Window/WorldEditor")]
+    [MenuItem("Window/World Editor")]
     public static void ShowWindow() {
         EditorWindow.GetWindow(typeof(WorldEditor));
     }
@@ -47,8 +47,8 @@ class WorldEditor : EditorWindow {
         EditorGUILayout.LabelField("Assets", EditorStyles.boldLabel);
         EditorGUI.indentLevel = 1;
 
-        if (GUILayout.Button("Process Chunks"))
-            ChunkTools.ProcessChunks();
+        if (GUILayout.Button("Bake Chunks"))
+            ChunkTools.BakeChunks();
 
         EditorGUI.indentLevel = 0;
 

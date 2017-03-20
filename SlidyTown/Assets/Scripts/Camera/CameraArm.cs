@@ -5,6 +5,7 @@ using System.Linq;
 public class CameraArm : SingletonBehaviour<CameraArm> {
     public float FocusRadius = 5;
     [Space]
+    public Vector3 Rotation;
     public float Height = 10;
     public float Distance = 5;
     public float VelocityOffset = 0.25f;
@@ -23,6 +24,7 @@ public class CameraArm : SingletonBehaviour<CameraArm> {
 
     public void SnapToTarget() {
         this.transform.position = GetTargetPosition();
+        this.transform.rotation = Quaternion.Euler(Rotation);
     }
 
     private Vector3 GetFocusPosition() {

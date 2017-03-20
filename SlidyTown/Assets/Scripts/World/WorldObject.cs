@@ -31,6 +31,7 @@ public class WorldObject : MonoBehaviour, ISnapped {
         if (source != null) {
             var obj = Instantiate(source, this.transform, false);
             obj.name = this.CleanName + "_" + WorldObjectProvider.CurrentWorld;
+            obj.hideFlags = HideFlags.DontSave;
             _CurrentGameObject = obj;
         }
         else {
@@ -47,9 +48,11 @@ public class WorldObject : MonoBehaviour, ISnapped {
             }
             else {
                 UnityEditor.EditorApplication.delayCall += () => {
-                    for (int i = this.transform.childCount - 1; i >= 0; i--) {
-                        if (_CurrentGameObject != this.transform.GetChild(i).gameObject)
-                            DestroyImmediate(this.transform.GetChild(i).gameObject);
+                    if (this != null) {
+                        for (int i = this.transform.childCount - 1; i >= 0; i--) {
+                            if (_CurrentGameObject != this.transform.GetChild(i).gameObject)
+                                DestroyImmediate(this.transform.GetChild(i).gameObject);
+                        }
                     }
                 };
             }

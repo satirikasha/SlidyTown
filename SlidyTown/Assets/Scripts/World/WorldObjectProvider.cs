@@ -41,6 +41,12 @@ public static class WorldObjectProvider {
     [WorldSelector]
     private static string _CurrentWorld;
 
+    public static string CurrentWorldPath {
+        get {
+            return ResourcesWorldsPath + "/" + CurrentWorld;
+        }
+    }
+
     private static Dictionary<string, Object[]> _WorldCache = new Dictionary<string, Object[]>();
 
     public static Object GetWorldObject(string world, string name) {

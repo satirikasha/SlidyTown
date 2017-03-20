@@ -95,7 +95,7 @@ public class WorldGenerator : SingletonBehaviour<WorldGenerator> {
     }
 
     private WorldChunk CreateChunk(int id) {
-        var chunk = Instantiate<WorldChunk>(ChunkConfig.Instance.GetChunkData(id).Prefab, ChunksPoolHost);
+        var chunk = Instantiate(ChunkConfig.Instance.GetChunkData(id).Prefab, ChunksPoolHost);
         chunk.gameObject.SetActive(false);
         _Chunks.Add(chunk);
         return chunk;
