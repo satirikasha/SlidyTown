@@ -55,10 +55,12 @@ class WorldEditor : EditorWindow {
         EditorGUI.indentLevel = 1;
 
         EditorGUILayout.BeginHorizontal();
-        if (GUILayout.Button("Bake Chunks"))
+        GUILayout.FlexibleSpace();
+        if (GUILayout.Button("Cleanup Chunks"))
             ChunkTools.BakeChunks();
         if (GUILayout.Button("Bake Composites"))
             ChunkTools.BakeComposites();
+        GUILayout.FlexibleSpace();
         EditorGUILayout.EndHorizontal();
 
         EditorGUI.indentLevel = 0;
