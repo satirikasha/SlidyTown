@@ -71,4 +71,10 @@ public static class WorldObjectProvider {
             _WorldCache.Add(world, Resources.LoadAll(ResourcesWorldsPath + "/" + world));
         }
     }
+
+#if UNITY_EDITOR
+    public static void RefreshWorld(string world) {
+        _WorldCache[world] = Resources.LoadAll(ResourcesWorldsPath + "/" + world);
+    }
+#endif
 }

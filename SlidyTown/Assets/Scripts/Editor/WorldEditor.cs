@@ -54,8 +54,12 @@ class WorldEditor : EditorWindow {
         EditorGUILayout.LabelField("Assets", EditorStyles.boldLabel);
         EditorGUI.indentLevel = 1;
 
+        EditorGUILayout.BeginHorizontal();
         if (GUILayout.Button("Bake Chunks"))
             ChunkTools.BakeChunks();
+        if (GUILayout.Button("Bake Composites"))
+            ChunkTools.BakeComposites();
+        EditorGUILayout.EndHorizontal();
 
         EditorGUI.indentLevel = 0;
 
