@@ -26,7 +26,7 @@ public class FinishPanel : SingletonBehaviour<FinishPanel> {
     protected override void OnEnable() {
         base.OnEnable();
         if (GameManager.Instance != null) {
-            Expired = !Advertisement.IsReady("rewardedVideo") || GameManager.Instance.Score < 5;
+            Expired = !Advertisement.IsReady("rewardedVideo") || GameManager.Instance.Score < 1;
         }
         OnExpiredChanged();
     }
