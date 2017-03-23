@@ -36,7 +36,6 @@ public class GameManager : SingletonBehaviour<GameManager> {
         if(SaveManager.Data.MaxPoints < Score) {
             SaveManager.Data.MaxPoints = Score;
         }
-        Debug.Log("Finish");
         CurrencyManager.AddCoins(Score);
         Analytics.CustomEvent("GameFinished", new Dictionary<string, object> {
             { "world", WorldManager.CurrentWorld },

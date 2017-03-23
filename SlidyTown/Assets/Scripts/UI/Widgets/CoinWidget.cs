@@ -33,20 +33,16 @@ public class CoinWidget : SingletonBehaviour<CoinWidget> {
         CurrencyManager.OnCoinsAdded += _ => StartCoroutine(OnCoinsAdded(_));
         CurrencyManager.OnCoinsSpent += _ => StartCoroutine(OnCoinsSpent(_));
 
-        Debug.Log("Awake");
-
         _Initialized = true;
     }
 
     private IEnumerator OnCoinsAdded(int ammount) {
-        Debug.Log("Added coins - " + ammount);
         if (ammount > 0) {
             yield return new WaitUntil(() => _CanvasGroup.alpha == 1);
             yield return new WaitForSeconds(0.5f);
             StatusText.text = "+" + ammount;
             _Animator.SetTrigger("ShowStatusBar");
             yield return new WaitForSeconds(0.75f);
-            Debug.Log("emmit - " + ammount);
             CoinParticles.Emit(ammount);
         }
         CoinText.text = CurrencyManager.Coins.ToString();
