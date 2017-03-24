@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class PathData : MonoBehaviour {
 
-    public const float MaxLength = 35;
+    public const float MaxLength = 30;
 
     public float Length { get; private set; }
 
@@ -28,7 +28,7 @@ public class PathData : MonoBehaviour {
 	void Update () {
         if (GameManager.Instance.IsPlaying && !_PlayerController.Dead && _MovementController.IsTurning) {
             _Counter++;
-            if (_Counter >= 2/*5*/) {
+            if (_Counter >= 3/*5*/) {
                 _Counter = 0;
 
                 Length += (this.transform.position - _PathPoints.Last()).magnitude;
