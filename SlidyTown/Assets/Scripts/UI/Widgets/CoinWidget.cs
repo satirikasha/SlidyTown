@@ -84,6 +84,7 @@ public class CoinWidget : SingletonBehaviour<CoinWidget> {
         _CanvasGroup.alpha = target;
         if (!value) {
             StopAllCoroutines();
+            CoinText.text = CurrencyManager.Coins.ToString();
             CoinParticles.Clear();
         }
     }
