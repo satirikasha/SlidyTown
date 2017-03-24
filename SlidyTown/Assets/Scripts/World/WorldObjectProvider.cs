@@ -12,7 +12,7 @@ public static class WorldObjectProvider {
     public const string ResourcesWorldsPath = "World";
     public const string AssetsWorldsPath = "Assets/Resources/" + ResourcesWorldsPath;
     public const string CurrentWorldKey = "CurrentWorld";
-    public const string DefaultWorld = "Farm";
+    public const string DefaultWorld = "Academeg";//"Farm";
 
     public static event Action OnWorldChanged;
 
@@ -71,4 +71,10 @@ public static class WorldObjectProvider {
             _WorldCache.Add(world, Resources.LoadAll(ResourcesWorldsPath + "/" + world));
         }
     }
+
+#if UNITY_EDITOR
+    public static void RefreshWorld(string world) {
+        _WorldCache[world] = Resources.LoadAll(ResourcesWorldsPath + "/" + world);
+    }
+#endif
 }

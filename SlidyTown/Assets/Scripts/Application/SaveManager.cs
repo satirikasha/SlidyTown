@@ -54,7 +54,7 @@ public static class SaveManager {
             Version = 0,
             Coins = 0,
             MaxPoints = 0,
-            UnlockedWorlds = new List<string>() { "Farm" }
+            UnlockedWorlds = new List<string>() { "Farm", "Academeg" }
         };
     }
 }

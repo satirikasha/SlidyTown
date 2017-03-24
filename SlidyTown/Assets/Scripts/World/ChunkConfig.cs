@@ -35,7 +35,9 @@ public class ChunkConfig : SingletonScriptableObject<ChunkConfig> {
 public class ChunkData {
     [ReadOnly]
     public int ID;
-    [Range(0, 1)]
-    public float Complexity;
+    [Range(0, 10)]
+    public int MinIndex;
+    //[Range(0, 1)]
+    //public float Complexity;
     public WorldChunk Prefab;
 }

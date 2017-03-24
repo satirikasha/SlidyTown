@@ -20,6 +20,7 @@ public class WorldGenerator : SingletonBehaviour<WorldGenerator> {
     }
     private static Transform _ChunksPoolHost;
 
+    private int _ChunkIndex;
     private int _LastChunkID;
     private float _LastChunkPosition;
     private Queue<WorldChunk> _CurrentChunks = new Queue<WorldChunk>();
@@ -70,8 +71,9 @@ public class WorldGenerator : SingletonBehaviour<WorldGenerator> {
            ReleaseChunk(_CurrentChunks.Dequeue());
         }
 
-        _LastChunkPosition += Step;
+        _ChunkIndex++;
         _LastChunkID = chunkID;
+        _LastChunkPosition += Step;
     }
 
     private void ReleaseChunk(WorldChunk chunk) {
@@ -82,7 +84,7 @@ public class WorldGenerator : SingletonBehaviour<WorldGenerator> {
     }
 
     private int EvaluateNextChunkID() {
-        var selection = ChunkConfig.Instance.Chunks.Where(_ => _.ID != _LastChunkID);
+        var selection = ChunkConfig.Instance.Chunks.Where(_ => _.ID != _LastChunkID && _.MinIndex <= _ChunkIndex);
         return selection.ElementAt(Random.Range(0, selection.Count())).ID;
     }
 

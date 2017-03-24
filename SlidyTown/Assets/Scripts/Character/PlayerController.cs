@@ -47,17 +47,19 @@ public class PlayerController : SingletonBehaviour<PlayerController> {
         if (WorldDebugger.Immortal)
             return;
 #endif
-        Dead = true;
-        MovementController.StopMovement();
-        var destroyEffect = VisualEffectsManager.Instance.GetEffect("DestroyEffect");
-        destroyEffect.transform.position = this.transform.position;
-        if (destroyEffect != null) {
-            destroyEffect.Play();
+        if (!Dead) {
+            Dead = true;
+            MovementController.StopMovement();
+            var destroyEffect = VisualEffectsManager.Instance.GetEffect("DestroyEffect");
+            destroyEffect.transform.position = this.transform.position;
+            if (destroyEffect != null) {
+                destroyEffect.Play();
+            }
+            this.GetComponentInChildren<MeshRenderer>().enabled = false;
+            //this.transform.GetChild(0).gameObject.SetActive(false);
+            if (OnPlayerDied != null)
+                OnPlayerDied();
         }
-        this.GetComponentInChildren<MeshRenderer>().enabled = false;
-        //this.transform.GetChild(0).gameObject.SetActive(false);
-        if (OnPlayerDied != null)
-            OnPlayerDied();
     }
 
     private void UpdateInput() {
