@@ -44,8 +44,8 @@ public class CoinWidget : SingletonBehaviour<CoinWidget> {
             _Animator.SetTrigger("ShowStatusBar");
             yield return new WaitForSeconds(0.75f);
             CoinParticles.Emit(ammount);
+            CoinText.text = CurrencyManager.Coins.ToString();
         }
-        CoinText.text = CurrencyManager.Coins.ToString();
     }
 
     private IEnumerator OnCoinsSpent(int amount) {
@@ -66,8 +66,6 @@ public class CoinWidget : SingletonBehaviour<CoinWidget> {
     }
 
     private IEnumerator SetVisibilityTask(bool value) {
-        CoinText.text = CurrencyManager.Coins.ToString();
-
         _Visible = value;
 
         var delay = TransitionTime;

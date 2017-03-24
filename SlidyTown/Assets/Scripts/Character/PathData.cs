@@ -28,7 +28,7 @@ public class PathData : MonoBehaviour {
 	void Update () {
         if (GameManager.Instance.IsPlaying && !_PlayerController.Dead && _MovementController.IsTurning) {
             _Counter++;
-            if (_Counter >= 3/*5*/) {
+            if (_Counter >= 1) {
                 _Counter = 0;
 
                 Length += (this.transform.position - _PathPoints.Last()).magnitude;

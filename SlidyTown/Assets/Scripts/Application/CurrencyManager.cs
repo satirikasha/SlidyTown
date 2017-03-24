@@ -15,6 +15,7 @@ public static class CurrencyManager {
 
     public static void AddCoins(int ammount) {
         SaveManager.Data.Coins += ammount;
+        SaveManager.Save();
         if (OnCoinsAdded != null)
             OnCoinsAdded(ammount);
     }
