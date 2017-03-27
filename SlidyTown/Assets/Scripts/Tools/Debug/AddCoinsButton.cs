@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class AddCoinsButton : MonoBehaviour {
 
-	void Awake() {
+	void Start() {
         this.GetComponent<Button>().onClick.AddListener(() => {
             CurrencyManager.AddCoins(100);
         });
