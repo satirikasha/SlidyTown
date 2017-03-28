@@ -13,12 +13,12 @@ public class WorldMaterial : MonoBehaviour {
 
     void Awake() {
         ControlledRenderer = this.GetComponent<Renderer>();
-        WorldObjectProvider.OnWorldChanged += Refresh;
+        WorldObjectProvider.OnWorldApplied += Refresh;
         Refresh();
     }
 
     void OnDestroy() {
-        WorldObjectProvider.OnWorldChanged -= Refresh;
+        WorldObjectProvider.OnWorldApplied -= Refresh;
     }
 
 

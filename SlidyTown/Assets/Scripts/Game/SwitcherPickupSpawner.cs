@@ -6,11 +6,11 @@ using UnityEngine;
 public class SwitcherPickupSpawner : MonoBehaviour, ISnapped {
 
     void Awake() {
-        WorldObjectProvider.OnWorldChanged += Respawn;
+        WorldObjectProvider.OnWorldApplied += Respawn;
     }
 
     void OnDestroy() {
-        WorldObjectProvider.OnWorldChanged -= Respawn;
+        WorldObjectProvider.OnWorldApplied -= Respawn;
     }
 
     void OnEnable() {

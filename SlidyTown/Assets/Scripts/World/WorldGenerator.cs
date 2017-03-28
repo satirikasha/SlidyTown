@@ -56,20 +56,19 @@ public class WorldGenerator : SingletonBehaviour<WorldGenerator> {
     private void PreloadChunks() {
         foreach (var chunkData in ChunkConfig.Instance.Chunks) {
             CreateChunk(chunkData.ID);
-            CreateChunk(chunkData.ID);
         } 
     }
 
     private void PrepareNextChunk() {
+        if (_CurrentChunks.Count >= 3) {
+            ReleaseChunk(_CurrentChunks.Dequeue());
+        }
         var chunkID = EvaluateNextChunkID();
         var chunk = GetChunk(chunkID);
         chunk.transform.SetParent(this.transform);
         chunk.transform.position = new Vector3(0, 0, _LastChunkPosition + Step);
         chunk.gameObject.SetActive(true);
         _CurrentChunks.Enqueue(chunk);
-        if(_CurrentChunks.Count > 3) {
-           ReleaseChunk(_CurrentChunks.Dequeue());
-        }
 
         _ChunkIndex++;
         _LastChunkID = chunkID;
@@ -84,7 +83,9 @@ public class WorldGenerator : SingletonBehaviour<WorldGenerator> {
     }
 
     private int EvaluateNextChunkID() {
-        var selection = ChunkConfig.Instance.Chunks.Where(_ => _.ID != _LastChunkID && _.MinIndex <= _ChunkIndex);
+        var selection = ChunkConfig.Instance.Chunks
+            .Where(_ => !_CurrentChunks.Any(c => c.Data.ID == _.ID) && _.MinIndex <= _ChunkIndex);
+
         return selection.ElementAt(Random.Range(0, selection.Count())).ID;
     }
 

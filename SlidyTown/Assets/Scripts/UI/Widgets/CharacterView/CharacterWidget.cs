@@ -104,7 +104,10 @@ public class CharacterWidget : MonoBehaviour, IDeselectHandler {
         Selected.gameObject.SetActive(true);
         yield return null;
         WorldObjectProvider.CurrentWorld = Data.Name;
-        yield return new WaitForSecondsRealtime(0.25f);
+        yield return null;
+        WorldObjectProvider.ApplyWorldChanges();
+        yield return null;
+        //yield return new WaitForSecondsRealtime(0.25f);
         UIManager.SetCurrentPanel("StartPanel");
         _CurrentSetWorldTask = null;
     }

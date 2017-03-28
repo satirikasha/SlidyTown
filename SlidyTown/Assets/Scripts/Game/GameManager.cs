@@ -16,8 +16,9 @@ public class GameManager : SingletonBehaviour<GameManager> {
     }
 
     void Start() {
+        Prewarm();
         CameraArm.Instance.SnapToTarget();
-        PlayerController.LocalPlayer.OnPlayerDied += () => Finish(2);
+        PlayerController.LocalPlayer.OnPlayerDied += () => Finish(1.5f);
         PlayerController.LocalPlayer.OnPickedUp += _ => Score++;
     }
 
@@ -33,10 +34,12 @@ public class GameManager : SingletonBehaviour<GameManager> {
     }
 
     private IEnumerator FinishTask(float delay) {
+        yield return null;
         if(SaveManager.Data.MaxPoints < Score) {
             SaveManager.Data.MaxPoints = Score;
         }
         CurrencyManager.AddCoins(Score);
+        yield return null;
         Analytics.CustomEvent("GameFinished", new Dictionary<string, object> {
             { "world", WorldManager.CurrentWorld },
             { "score", Score},
@@ -44,5 +47,10 @@ public class GameManager : SingletonBehaviour<GameManager> {
         });
         yield return new WaitForSeconds(delay);
         UIManager.SetCurrentPanel("FinishPanel");
+    }
+
+    private void Prewarm() {
+        var visualEffectsManager = VisualEffectsManager.Instance;
+        visualEffectsManager.transform.SetParent(this.transform);
     }
 }

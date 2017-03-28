@@ -9,6 +9,7 @@ public class ApplicationManager : SingletonBehaviour<ApplicationManager> {
     protected override void Awake() {
         SaveManager.Load();
         ApplySettings();
+        PrewarmAssets();
         StartCoroutine(LoadGameTask());
     }
 
@@ -37,5 +38,9 @@ public class ApplicationManager : SingletonBehaviour<ApplicationManager> {
 
     public void ApplySettings() {
         Application.targetFrameRate = 60;
+    }
+
+    private void PrewarmAssets() {
+        var worldConfig = WorldConfig.Instance;
     }
 }

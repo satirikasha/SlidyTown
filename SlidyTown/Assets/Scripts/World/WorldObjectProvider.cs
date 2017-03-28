@@ -15,6 +15,8 @@ public static class WorldObjectProvider {
     public const string DefaultWorld = "Academeg";//"Farm";
 
     public static event Action OnWorldChanged;
+    public static event Action OnWorldApplied;
+    public static event Action AfterWorldApplied;
 
     public static string CurrentWorld {
         get {
@@ -33,6 +35,7 @@ public static class WorldObjectProvider {
             if (_CurrentWorld != value) {
                 _CurrentWorld = value;
                 PlayerPrefs.SetString(CurrentWorldKey, _CurrentWorld);
+                _WorldDirty = true;
                 if (OnWorldChanged != null)
                     OnWorldChanged();
             }
@@ -40,6 +43,7 @@ public static class WorldObjectProvider {
     }
     [WorldSelector]
     private static string _CurrentWorld;
+    private static bool _WorldDirty;
 
     public static string CurrentWorldPath {
         get {
@@ -48,6 +52,16 @@ public static class WorldObjectProvider {
     }
 
     private static Dictionary<string, Object[]> _WorldCache = new Dictionary<string, Object[]>();
+
+    public static void ApplyWorldChanges() {
+        if (_WorldDirty) {
+            if (OnWorldApplied != null)
+                OnWorldApplied();
+            if (AfterWorldApplied != null)
+                AfterWorldApplied();
+            _WorldDirty = false;
+        }
+    }
 
     public static Object GetWorldObject(string world, string name) {
         PrepareWorld(world);

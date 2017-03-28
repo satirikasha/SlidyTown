@@ -45,6 +45,7 @@ public static class ChunkTools {
                 }
                 WorldObjectProvider.RefreshWorld(world);
                 WorldObjectProvider.CurrentWorld = world;
+                WorldObjectProvider.ApplyWorldChanges();
                 foreach (var worldObject in composite.GetComponentsInChildren<WorldObject>()) {
                     worldObject.Refresh();
                 }

@@ -17,12 +17,12 @@ public class WorldObject : MonoBehaviour, ISnapped {
     private GameObject _CurrentGameObject;
 
     void Awake() {
-        WorldObjectProvider.OnWorldChanged += Refresh;
+        WorldObjectProvider.OnWorldApplied += Refresh;
         Refresh();
     }
 
     void OnDestroy() {
-        WorldObjectProvider.OnWorldChanged -= Refresh;
+        WorldObjectProvider.OnWorldApplied -= Refresh;
     }
 
 

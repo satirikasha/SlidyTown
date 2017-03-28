@@ -28,6 +28,7 @@ class WorldEditor : EditorWindow {
 
         var selectedIndex = options.IndexOf(WorldObjectProvider.CurrentWorld);
         WorldObjectProvider.CurrentWorld = options.ElementAt(EditorGUILayout.Popup("Current World", selectedIndex, options.ToArray()));
+        WorldObjectProvider.ApplyWorldChanges();
         EditorGUI.indentLevel = 0;
 
         EditorGUILayout.Space();

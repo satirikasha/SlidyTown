@@ -9,11 +9,11 @@ public class RandomPickupSpawner : MonoBehaviour, ISnapped {
     public float Probability;
 
     void Awake() {
-        WorldObjectProvider.OnWorldChanged += Respawn;
+        WorldObjectProvider.OnWorldApplied += Respawn;
     }
 
     void OnDestroy() {
-        WorldObjectProvider.OnWorldChanged -= Respawn;
+        WorldObjectProvider.OnWorldApplied -= Respawn;
     }
 
     void OnEnable() {
