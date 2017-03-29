@@ -23,4 +23,6 @@ public class WorldData {
     public int Price;
     public Sprite ColoredPreview;
     public Sprite SilouetePreview;
+    public Color MainColor;
+    public Color SecondaryColor;
 }

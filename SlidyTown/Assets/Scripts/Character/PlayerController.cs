@@ -28,6 +28,7 @@ public class PlayerController : SingletonBehaviour<PlayerController> {
 
     void Update() {
         UpdateInput();
+        UpdateShaders();
     }
 
     void OnTriggerEnter(Collider collider) {
@@ -65,6 +66,10 @@ public class PlayerController : SingletonBehaviour<PlayerController> {
     private void UpdateInput() {
         if (GameManager.Instance.IsPlaying && Input.GetKeyUp(KeyCode.Space))
             SwitchDirection();
+    }
+
+    private void UpdateShaders() {
+        Shader.SetGlobalVector("_CharacterPos", this.transform.position);
     }
 
     public void SwitchDirection() {

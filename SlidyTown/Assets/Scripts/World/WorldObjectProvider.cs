@@ -35,6 +35,7 @@ public static class WorldObjectProvider {
             if (_CurrentWorld != value) {
                 _CurrentWorld = value;
                 PlayerPrefs.SetString(CurrentWorldKey, _CurrentWorld);
+                _CurrentWorldData = null;               
                 _WorldDirty = true;
                 if (OnWorldChanged != null)
                     OnWorldChanged();
@@ -50,6 +51,15 @@ public static class WorldObjectProvider {
             return ResourcesWorldsPath + "/" + CurrentWorld;
         }
     }
+
+    public static WorldData CurrentWorldData {
+        get{
+            if(_CurrentWorldData == null)
+                _CurrentWorldData = WorldConfig.Instance.Data.FirstOrDefault(_ => _.Name == _CurrentWorld);
+            return _CurrentWorldData;
+        }
+    }
+    private static WorldData _CurrentWorldData;
 
     private static Dictionary<string, Object[]> _WorldCache = new Dictionary<string, Object[]>();
 
