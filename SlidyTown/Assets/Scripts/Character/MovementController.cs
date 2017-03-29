@@ -19,6 +19,12 @@ public class MovementController : MonoBehaviour {
         }
     }
 
+    public Vector3 OppositeDirection {
+        get {
+            return (Vector3.forward + (_MovingRight ? Vector3.left : Vector3.right)).normalized;
+        }
+    }
+
     public bool IsTurning {
         get {
             return Direction != TargetDirection;
