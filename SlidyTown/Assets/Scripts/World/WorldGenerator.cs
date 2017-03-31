@@ -26,8 +26,7 @@ public class WorldGenerator : SingletonBehaviour<WorldGenerator> {
     private Queue<WorldChunk> _CurrentChunks = new Queue<WorldChunk>();
     private static List<WorldChunk> _Chunks = new List<WorldChunk>();
 
-    protected override void Awake() {
-        base.Awake();
+    void Start() {
         InitializeChunkPool();
         _LastChunkPosition = -Step;
         Update();

@@ -10,8 +10,11 @@ public class UIColorManager : SingletonBehaviour<UIColorManager> {
     public Color MainColor;
     public Color SecondaryColor;
 
+    private float _CurrentTimeout;
+
     protected override void Awake() {
         base.Awake();
+        WakeUp();
         WorldObjectProvider.OnWorldChanged += WakeUp;
     }
 
@@ -21,11 +24,14 @@ public class UIColorManager : SingletonBehaviour<UIColorManager> {
     }
 
     private void WakeUp() {
-
+        _CurrentTimeout = SleepTimeout;
     }
 
     void Update() {
-        MainColor = Color.Lerp(MainColor, WorldObjectProvider.CurrentWorldData.MainColor, Time.unscaledDeltaTime * Damping);
-        SecondaryColor = Color.Lerp(SecondaryColor, WorldObjectProvider.CurrentWorldData.SecondaryColor, Time.unscaledDeltaTime);
+        if (_CurrentTimeout > 0) {
+            MainColor = Color.Lerp(MainColor, WorldObjectProvider.CurrentWorldData.MainColor, Time.unscaledDeltaTime * Damping);
+            SecondaryColor = Color.Lerp(SecondaryColor, WorldObjectProvider.CurrentWorldData.SecondaryColor, Time.unscaledDeltaTime);
+            _CurrentTimeout -= Time.unscaledDeltaTime;
+        }
     }
 }

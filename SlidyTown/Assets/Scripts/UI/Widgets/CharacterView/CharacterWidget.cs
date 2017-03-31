@@ -27,6 +27,10 @@ public class CharacterWidget : MonoBehaviour, IDeselectHandler {
         WorldObjectProvider.OnWorldChanged += RefreshSelection;
 	}
 
+    void OnDestroy() {
+        WorldObjectProvider.OnWorldChanged -= RefreshSelection;
+    }
+
     void OnEnable() {
         if (Data != null) {
             RibbonType ribbonType;

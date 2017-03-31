@@ -38,6 +38,7 @@ public class ApplicationManager : SingletonBehaviour<ApplicationManager> {
 
     public void ApplySettings() {
         Application.targetFrameRate = 60;
+        Screen.fullScreen = false;
     }
 
     private void PrewarmAssets() {
