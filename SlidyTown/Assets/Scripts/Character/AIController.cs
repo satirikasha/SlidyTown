@@ -10,7 +10,7 @@ public class AIController : MonoBehaviour {
     private PlayerController _PlayerController;
     private MovementController _MovementController;
 
-    void Awake() {
+    void Start() {
         _PlayerController = PlayerController.LocalPlayer;
         _MovementController = _PlayerController.MovementController;
     }
