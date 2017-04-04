@@ -50,7 +50,7 @@ public class GameManager : SingletonBehaviour<GameManager> {
     }
 
     private void Prewarm() {
-        var visualEffectsManager = VisualEffectsManager.Instance;
-        visualEffectsManager.transform.SetParent(this.transform);
+        VisualEffectsManager.Instance.transform.SetParent(this.transform);
+        BoostManager.Instance.transform.SetParent(this.transform);
     }
 }

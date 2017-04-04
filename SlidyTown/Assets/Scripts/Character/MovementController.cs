@@ -63,7 +63,9 @@ public class MovementController : MonoBehaviour {
     }
 
     private void UpdateSpeed() {
-        Speed = Mathf.Clamp(Speed + Acceleration * Time.deltaTime, MinSpeed, MaxSpeed);
+        //Speed = Mathf.Clamp(Speed + Acceleration * Time.deltaTime, MinSpeed, MaxSpeed);
+        Speed = Mathf.Lerp(Speed, MaxSpeed, Acceleration * Time.deltaTime);
+        //Debug.Log(Speed);
     }
 
     private void UpdateDirection() {
