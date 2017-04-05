@@ -7,12 +7,10 @@ public class AIController : MonoBehaviour {
     public float Radius = 0.35f;
     public float SafetyDistance = 0.75f;
 
-    private PlayerController _PlayerController;
     private MovementController _MovementController;
 
     void Start() {
-        _PlayerController = PlayerController.LocalPlayer;
-        _MovementController = _PlayerController.MovementController;
+        _MovementController = PlayerController.LocalPlayer.MovementController;
     }
 
     void Update() {
@@ -21,7 +19,7 @@ public class AIController : MonoBehaviour {
 
     private void UpdateAI() {
         if (CheckDirectionChange())
-            _PlayerController.SwitchDirection();
+            _MovementController.SwitchDirection();
     }
 
     private bool CheckDirectionChange() {

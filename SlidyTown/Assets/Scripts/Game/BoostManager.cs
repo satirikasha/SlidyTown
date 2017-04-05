@@ -7,6 +7,10 @@ using UnityEngine.Analytics;
 public class BoostManager : InstancedBehaviour<BoostManager> {
 
     public Dictionary<string, BoostController> BoostCache { get; private set; }
+
+    void Awake() {
+        BoostCache = new Dictionary<string, BoostController>();
+    }
  
     public void ApplyBoost(string boost) {
         if (!BoostCache.ContainsKey(boost)) {

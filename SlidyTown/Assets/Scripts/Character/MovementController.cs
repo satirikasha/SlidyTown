@@ -9,7 +9,8 @@ public class MovementController : MonoBehaviour {
     public float Acceleration = 1;
     public float Steering = 0.1f;
 
-    public float Speed { get; private set; }
+    public bool OverrideSpeed { get; set; }
+    public float Speed { get; set; }
 
     public Vector3 Direction { get; private set; }
 
@@ -63,9 +64,9 @@ public class MovementController : MonoBehaviour {
     }
 
     private void UpdateSpeed() {
-        //Speed = Mathf.Clamp(Speed + Acceleration * Time.deltaTime, MinSpeed, MaxSpeed);
-        Speed = Mathf.Lerp(Speed, MaxSpeed, Acceleration * Time.deltaTime);
-        //Debug.Log(Speed);
+        if (!OverrideSpeed) {
+            Speed = Mathf.Lerp(Speed, MaxSpeed, Acceleration * Time.deltaTime);
+        }
     }
 
     private void UpdateDirection() {

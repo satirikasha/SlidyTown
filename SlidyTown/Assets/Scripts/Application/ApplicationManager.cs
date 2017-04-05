@@ -44,4 +44,9 @@ public class ApplicationManager : SingletonBehaviour<ApplicationManager> {
     private void PrewarmAssets() {
         var worldConfig = WorldConfig.Instance;
     }
+
+    void OnApplicationPause(bool pause) {
+        if (pause)
+            SaveManager.Save();
+    }
 }

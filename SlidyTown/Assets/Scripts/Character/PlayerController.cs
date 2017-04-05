@@ -14,6 +14,8 @@ public class PlayerController : SingletonBehaviour<PlayerController> {
     public event Action OnPlayerDied;
     public event Action<PickupItem> OnPickedUp;
 
+    public bool Immortal { get; set; }
+    public bool RecieveInput { get; set; }
     public bool Dead { get; private set; }
     public MovementController MovementController { get; private set; }
     public FollowerController FollowerController { get; private set; }
@@ -21,6 +23,7 @@ public class PlayerController : SingletonBehaviour<PlayerController> {
 
     protected override void Awake() {
         base.Awake();
+        RecieveInput = true;
         MovementController = this.GetComponent<MovementController>();
         FollowerController = this.GetComponent<FollowerController>();
         PathData = this.GetComponent<PathData>();
@@ -48,6 +51,9 @@ public class PlayerController : SingletonBehaviour<PlayerController> {
         if (WorldDebugger.Immortal)
             return;
 #endif
+        if (Immortal)
+            return;
+
         if (!Dead) {
             Dead = true;
             MovementController.StopMovement();
@@ -73,7 +79,8 @@ public class PlayerController : SingletonBehaviour<PlayerController> {
     }
 
     public void SwitchDirection() {
-        MovementController.SwitchDirection();
+        if (RecieveInput)
+            MovementController.SwitchDirection();
     }
 
 

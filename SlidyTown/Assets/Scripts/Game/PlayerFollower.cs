@@ -6,6 +6,8 @@ public class PlayerFollower : MonoBehaviour {
 
     public float BaseDistance = 2;
     public float Spacing = 1;
+    [Range(0,3)]
+    public float RandomDirectionAmplitude = 1;
 
     public int Index { get; set; }
 
@@ -42,6 +44,5 @@ public class PlayerFollower : MonoBehaviour {
     }
 
     protected virtual void OnDestroyFollower() {
-        TargetDirection = (this.transform.forward + this.transform.right * Random.Range(-1f, 1f)).normalized;
     }
 }

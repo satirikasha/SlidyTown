@@ -16,8 +16,13 @@ public abstract class BoostController : MonoBehaviour {
     public float TimeLeft { get; private set; }
 
     public void ApplyBoost() {
-        TimeLeft = Duration;
-        StartBoost();
+        if (!BoostActive) {
+            TimeLeft = Duration;
+            StartBoost();
+        }
+        else {
+            TimeLeft = Duration;
+        }
     }
 
     void Update() {

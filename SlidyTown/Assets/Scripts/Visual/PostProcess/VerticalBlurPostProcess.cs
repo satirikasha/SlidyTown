@@ -10,7 +10,7 @@ namespace UnityStandardAssets.ImageEffects {
         [Range(0, 1)]
         public float Intensity;
 
-        private const int MaxRadius = 30;
+        private const int MaxRadius = 10;
         private const float MaxDownsample = 0.15f;
         // Debug: Remove downsampling
         //private const float MaxDownsample = 1f;
