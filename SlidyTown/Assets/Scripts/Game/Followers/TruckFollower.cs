@@ -14,7 +14,7 @@ public class TruckFollower : PlayerFollower {
         }
     }
 
-    protected override void OnDestroyFollower() {
+    protected override void OnDestroyFollower() {   
         var splashEffect = VisualEffectsManager.Instance.GetEffect("TrailerDestroy");
         splashEffect.transform.position = this.transform.position;
         if (splashEffect != null) {
