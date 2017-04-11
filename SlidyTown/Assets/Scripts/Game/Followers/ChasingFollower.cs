@@ -17,7 +17,7 @@ public class ChasingFollower : PlayerFollower {
     private bool _Dead;
     private float _Distance;
     private Vector3 _PreviousPosition;
-    private float _Argessiveness;
+    protected float _Argessiveness;
 
     protected override void Start() {
         base.Start();

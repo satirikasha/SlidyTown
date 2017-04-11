@@ -10,5 +10,8 @@ public class FastAndFuriousFollower : ChasingFollower {
         for (int i = 0; i < this.transform.childCount; i++) {
             this.transform.GetChild(i).gameObject.SetActive(i == carIndex);
         }
+
+        //if (carIndex < this.transform.childCount - 1)
+        //    _Argessiveness = 0;
     }
 }

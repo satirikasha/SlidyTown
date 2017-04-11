@@ -18,16 +18,17 @@ public class DriftController : MonoBehaviour {
         _Transform = this.transform;
         _Parent = _Transform.parent;
     }
+
+    void OnEnable() {
+        StartCoroutine(DirectionCacheTask());
+    }
 	
 	// Update is called once per frame
 	void Update () {
-        _TurnDir = Mathf.Sign(Vector3.Dot(_Parent.forward, _PreviousRight));
-        _TargetAngVelocity = 0;
-        if (Controller.MovementController.IsTurning) {
-            _TargetAngVelocity = 650 * PlayerController.LocalPlayer.MovementController.NormalizedSpeed;
-            _TargetAngVelocity *= Controller.MovementController.IsMovingRight ? 1 : -1;
-        }
-        _TargetAngVelocity += -Vector3.Dot(_Transform.forward, PlayerController.LocalPlayer.transform.right) * 650;
+        _TurnDir = Vector3.Dot(_Parent.forward, _PreviousRight) * 8;
+        _TargetAngVelocity = 650 * PlayerController.LocalPlayer.MovementController.NormalizedSpeed;
+        _TargetAngVelocity *= _TurnDir;
+        _TargetAngVelocity += -Vector3.Dot(_Transform.forward, _Parent.right) * 650;
         _AngVelocity = Mathf.Lerp(_AngVelocity, _TargetAngVelocity, Time.deltaTime * 10);
         _Transform.localRotation = _Transform.localRotation * Quaternion.Euler(0, _AngVelocity * Time.deltaTime, 0);
 
@@ -37,6 +38,11 @@ public class DriftController : MonoBehaviour {
     }
 
     private IEnumerator DirectionCacheTask() {
-        _PreviousRight = _Parent.right;
+        while (true) {
+            yield return null;
+            yield return null;
+            yield return null;
+            _PreviousRight = _Parent.right;
+        }
     }
 }
