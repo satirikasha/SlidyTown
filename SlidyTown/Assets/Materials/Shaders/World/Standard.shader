@@ -4,6 +4,7 @@
 		_MainTex ("Albedo (RGB)", 2D) = "white" {}
 		_Specular("Specular", Color) = (0,0,0,1)
 		_Glossiness("Smoothness", Range(0,1)) = 0.5
+		_Emission("Emission", Range(0,1)) = 0
 	}
 	SubShader {
 		Tags { "RenderType"="Opaque" }
@@ -20,6 +21,7 @@
 		sampler2D _MainTex;
 
 		half _Glossiness;
+		half _Emission;
 		fixed4 _Specular;
 		fixed4 _Color;
 
@@ -30,11 +32,11 @@
 		};
 
 		void surf (Input IN, inout SurfaceOutputStandardSpecular o) {
-			fixed4 c = tex2D(_MainTex, IN.uv_MainTex) * _Color;
-			o.Albedo = c;
+			fixed4 tex = tex2D(_MainTex, IN.uv_MainTex);
+			o.Albedo = tex.rgb * _Color;
 			o.Specular = _Specular;
 			o.Smoothness = _Glossiness;
-			o.Alpha = c.a;
+			o.Emission = tex.rgb * (1 - tex.a) * _Emission;
 		}
 
 		void color(Input IN, SurfaceOutputStandardSpecular o, inout fixed4 color) {
