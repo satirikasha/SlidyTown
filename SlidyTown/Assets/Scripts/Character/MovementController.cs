@@ -11,6 +11,11 @@ public class MovementController : MonoBehaviour {
 
     public bool OverrideSpeed { get; set; }
     public float Speed { get; set; }
+    public float NormalizedSpeed {
+        get {
+            return Speed / MaxSpeed;
+        }
+    }
 
     public Vector3 Direction { get; private set; }
 
