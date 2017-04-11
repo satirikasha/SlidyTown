@@ -25,7 +25,7 @@ public class DriftController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        _TurnDir = Vector3.Dot(_Parent.forward, _PreviousRight) * 8;
+        _TurnDir = Vector3.Dot(_Parent.forward, _PreviousRight) * 7;
         _TargetAngVelocity = 650 * PlayerController.LocalPlayer.MovementController.NormalizedSpeed;
         _TargetAngVelocity *= _TurnDir;
         _TargetAngVelocity += -Vector3.Dot(_Transform.forward, _Parent.right) * 650;

@@ -4,7 +4,7 @@ using UnityEngine;
 
 [CreateAssetMenu(fileName = "FogConfig", menuName = "FogConfig", order = 1)]
 public class FogConfig : ScriptableObject {
-
+    public Color AmbientColor = new Color(0.45f, 0.48f, 0.55f);
     public Color FogColor = Color.yellow;
     [Range(0, 1)]
     public float FogHeight = 0.25f;
