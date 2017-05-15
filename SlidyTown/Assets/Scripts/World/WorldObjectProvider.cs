@@ -9,7 +9,7 @@ using Object = UnityEngine.Object;
 [DefaultExecutionOrder(0)]
 public static class WorldObjectProvider {
 
-    public const string DefaultWorld = "FastAndFurious";
+    public const string DefaultWorld = "Farm";
 
     public const string ResourcesWorldsPath = "World";
     public const string AssetsWorldsPath = "Assets/Resources/" + ResourcesWorldsPath;
